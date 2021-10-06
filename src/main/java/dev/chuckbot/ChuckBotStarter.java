@@ -18,8 +18,8 @@ public class ChuckBotStarter {
             File inputWitze = new File("src/test/resources/witze.txt");
             // List<String> witzeListe = WitzeImporter.importKunden(inputWitze);
 
-            List<String> witzeListe = Files.readAllLines(inputWitze.toPath());
-            ChuckPrint.printAllJokesAtStart(witzeListe);
+            //List<String> witzeListe = Files.readAllLines(inputWitze.toPath());
+            //ChuckPrint.printAllJokesAtStart(witzeListe);
         }
     }
 
