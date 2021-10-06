@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 
 public class JokeHandler {
 
     public static void addingNewJoke() {
-        ArrayList<String> jokeList = new ArrayList<>();
+        Set<String> jokeList = ChuckBotImportJokes.importJokes("src/test/resources/jokes.txt");
+
         Scanner input = new Scanner(System.in);
         String weitererJoke = "y";
 
@@ -24,7 +26,7 @@ public class JokeHandler {
         }
         input.close();
 
-        File fileJokes = new File("src/resources/jokes.txt");
+        File fileJokes = new File("src/test/resources/jokes.txt");
         if (!fileJokes.exists()) {
             try {
                 fileJokes.createNewFile();
