@@ -10,15 +10,17 @@ import java.util.List;
 public class ChuckBotStarter {
 
     public static void main(String[] args) throws IOException {
-        for (String argument : args) {
+        /* for (String argument : args) {
             System.out.println(argument);
-        }
-        File inputWitze = new File("src/test/resources/witze.txt");
-        // List<String> witzeListe = WitzeImporter.importKunden(inputWitze);
+        }*/
+        if (args.length > 0 && args[0].equals("print")) {
 
-        List<String> witzeListe = Files.readAllLines(inputWitze.toPath());
-        ChuckPrint.printAllJokes(witzeListe);
-        ChuckPrint.printAllJokesAtStart(witzeListe);
+            File inputWitze = new File("src/test/resources/witze.txt");
+            // List<String> witzeListe = WitzeImporter.importKunden(inputWitze);
+
+            List<String> witzeListe = Files.readAllLines(inputWitze.toPath());
+            ChuckPrint.printAllJokesAtStart(witzeListe);
+        }
     }
 
 }
