@@ -8,13 +8,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class JokesFilePersistence implements JokesPersistence {
 
@@ -22,16 +20,6 @@ public class JokesFilePersistence implements JokesPersistence {
 
     public JokesFilePersistence(File storage) {
         this.storage = storage;
-    }
-
-    public static void main(String[] args) {
-        JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBejokes.txt"));
-
-        for (Joke j : persistence.loadData()) {
-            System.out.println(j.getJokeText() + " " + j.getCreationDate());
-        }
-
-        //persistence.storeData(persistence.loadData());
     }
 
     @Override
@@ -54,8 +42,9 @@ public class JokesFilePersistence implements JokesPersistence {
 
                     if(currentJoke.length == 2){
                         if (!currentJoke[0].isEmpty()) {
-                            //TODO: Check DateFormat
-                            jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1])));
+
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                            jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1],dtf)));
                         }
                     }
 
@@ -93,13 +82,13 @@ public class JokesFilePersistence implements JokesPersistence {
     public void storeData(List<Joke> jokes) {
         // Write the list to a file, whereby the file is always regenerated
         Path out = this.storage.toPath();
-        try (BufferedWriter writer = Files.newBufferedWriter(out, StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(out, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             for (Joke currJoke : jokes) {
                 //writer.append(currJoke.serializedCSV());
-                writer.append(currJoke.getJokeText() + ";" + currJoke.getCreationDate() + "\n");
+                writer.append(currJoke.getJoke() + ";" + currJoke.getCreationDate() + "\n");
             }
             System.out.println("Jokes stored successfully!");
-            writer.close();
+
         } catch (IOException e) {
             System.err.println("Tried to export jokes but something went terribly wrong (this is no joke!)");
         }
