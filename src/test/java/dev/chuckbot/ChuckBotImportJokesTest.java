@@ -11,7 +11,7 @@ class ChuckBotImportJokesTest {
     @Test
     void importJokes() {
         Set<String> test = ChuckBotImportJokes.importJokes("src/test/resources/jokes.txt");
-        assertEquals(250,test.size());
+        assertEquals(19,test.size());
     }
     @Test
     void importJokesFailFileExtension(){
