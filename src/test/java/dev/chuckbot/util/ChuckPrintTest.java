@@ -1,4 +1,4 @@
-package dev.chuckbot;
+package dev.chuckbot.util;
 
 import dev.chuckbot.util.ChuckPrint;
 import org.junit.jupiter.api.AfterEach;
