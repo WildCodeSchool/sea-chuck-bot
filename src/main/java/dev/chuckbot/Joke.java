@@ -2,8 +2,8 @@ package dev.chuckbot;
 
 import java.time.LocalDate;
 
-public class Joke{
-    // attributes
+public class Joke {
+
     private String jokeText;
     private LocalDate creationDate;
 
@@ -16,7 +16,16 @@ public class Joke{
         return jokeText;
     }
 
+    public void setJokeText(String jokeText) {
+        this.jokeText = jokeText;
+    }
+
     public LocalDate getCreationDate() {
         return creationDate;
     }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
 }
