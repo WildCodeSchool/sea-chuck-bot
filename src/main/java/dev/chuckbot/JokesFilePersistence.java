@@ -85,7 +85,7 @@ public class JokesFilePersistence implements JokesPersistence {
         try (BufferedWriter writer = Files.newBufferedWriter(out, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             for (Joke currJoke : jokes) {
                 //writer.append(currJoke.serializedCSV());
-                writer.append(currJoke.getJoke() + ";" + currJoke.getCreationDate() + "\n");
+                writer.append(currJoke.getJokeText() + ";" + currJoke.getCreationDate() + "\n");
             }
             System.out.println("Jokes stored successfully!");
 
