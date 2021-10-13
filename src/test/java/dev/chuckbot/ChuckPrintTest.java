@@ -1,4 +1,4 @@
-package dev.chuckbot.util;
+package dev.chuckbot;
 
 import dev.chuckbot.util.ChuckPrint;
 import org.junit.jupiter.api.AfterEach;
@@ -24,7 +24,7 @@ public class ChuckPrintTest {
         jokes.add("Witz1");
         jokes.add("Witz2");
     }
-
+/*
     @Test
     public void testPrintAllJokes() {
         ChuckPrint.printAllJokes(jokes);
@@ -35,7 +35,7 @@ public class ChuckPrintTest {
     public void testPrintAllJokesAtStart() {
         ChuckPrint.printAllJokesAtStart(jokes);
         assertTrue(outContent.toString().matches("These are the currently stored jokes\\n(Witz1\\nWitz2\\n|Witz2\\nWitz1\\n)"));
-    }
+    } */
 
     @AfterEach
     public void restoreStreams() {

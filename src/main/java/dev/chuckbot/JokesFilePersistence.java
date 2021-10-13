@@ -28,7 +28,7 @@ public class JokesFilePersistence implements JokesPersistence {
         JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBejokes.txt"));
 
         for (Joke j : persistence.loadData()) {
-            System.out.println(j.getJoke() + " " + j.getCreationDate());
+            System.out.println(j.getJokeText() + " " + j.getCreationDate());
         }
 
         //persistence.storeData(persistence.loadData());
@@ -96,7 +96,7 @@ public class JokesFilePersistence implements JokesPersistence {
         try (BufferedWriter writer = Files.newBufferedWriter(out, StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
             for (Joke currJoke : jokes) {
                 //writer.append(currJoke.serializedCSV());
-                writer.append(currJoke.getJoke() + ";" + currJoke.getCreationDate() + "\n");
+                writer.append(currJoke.getJokeText() + ";" + currJoke.getCreationDate() + "\n");
             }
             System.out.println("Jokes stored successfully!");
             writer.close();

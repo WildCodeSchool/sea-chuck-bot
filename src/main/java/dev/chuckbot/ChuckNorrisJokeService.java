@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ChuckNorrisJokeService {
 
@@ -13,8 +14,8 @@ public class ChuckNorrisJokeService {
         this.file = file;
     }
     String file;
-    File file = new File(file);
-    JokesFilePersistence filePersistence = new JokesFilePersistence(file);
+    File f = new File(file);
+    JokesFilePersistence filePersistence = new JokesFilePersistence(f);
 
     List<Joke> jokeList = new ArrayList<Joke>();
 
@@ -24,7 +25,7 @@ public class ChuckNorrisJokeService {
     }
     public void printAllJokes() {
         //printed alle Jokes - wird noch eine String-Set erwartet oder ein Set vom Typ Joke? Wir gehen davon aus, dass das auf Joke geändert wird.
-        Set<Joke> jokeSet = new HashSet<Joke>(jokeList);
+        List<Joke> jokeSet = new ArrayList<>(jokeList);
         ChuckPrint.printAllJokes(jokeSet);
     }
     public void getNewestJoke() {
