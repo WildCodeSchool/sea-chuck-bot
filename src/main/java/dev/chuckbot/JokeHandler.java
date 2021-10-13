@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
 public class JokeHandler {
 
     public static void addingNewJoke() {
-        Set<String> jokeList = ChuckBotImportJokes.importJokes("src/test/resources/jokes.txt");
+        List<String> jokeList = new ArrayList<>(ChuckBotImportJokes.importJokes("src/test/resources/jokes.txt"));
 
         Scanner input = new Scanner(System.in);
         String weitererJoke = "y";
@@ -30,14 +31,15 @@ public class JokeHandler {
         if (!fileJokes.exists()) {
             try {
                 fileJokes.createNewFile();
-                Files.write(fileJokes.toPath(), jokeList.toString().getBytes());
+                Files.write(fileJokes.toPath(), jokeList);
             }
             catch (IOException e){
+
             }
         }
         else {
             try {
-                Files.write(fileJokes.toPath(), jokeList.toString().getBytes());
+                Files.write(fileJokes.toPath(), jokeList);
             }
             catch (IOException e){
             }
