@@ -78,4 +78,20 @@ class JokesFilePersistenceTest {
         persistence.storeData(importedJokeList);
 
     }
+    @Test
+    void storeDataFileNotExist(){
+        JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/michgibtesnicht.txt"));
+        List<Joke> newJokeList = new ArrayList<>();
+
+        Joke myFirstJoke = new Joke("Chuck Norris wurde gestern geblitzt – beim Einparken.", LocalDate.now());
+        newJokeList.add(myFirstJoke);
+
+
+        persistence.storeData(newJokeList);
+
+        assertEquals(1, persistence.loadData().size());
+
+        //importedJokeList.remove(importedJokeList.size()-1);
+
+    }
 }
