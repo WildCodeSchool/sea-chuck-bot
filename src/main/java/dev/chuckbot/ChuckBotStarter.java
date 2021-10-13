@@ -13,6 +13,7 @@ public class ChuckBotStarter {
 
             ChuckPrint.printAllJokesAtStart(importedJokes);
         }
+        JokeHandler.addingNewJoke();
     }
 
 }
