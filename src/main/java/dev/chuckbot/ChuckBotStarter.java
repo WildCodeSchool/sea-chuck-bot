@@ -18,6 +18,7 @@ public class ChuckBotStarter {
         } else {
             System.out.println("Keine Argumente vorhanden.");
         }
+        JokeHandler.addingNewJoke();
     }
 
 }
