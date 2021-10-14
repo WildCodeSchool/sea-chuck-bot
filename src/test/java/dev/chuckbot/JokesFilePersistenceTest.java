@@ -1,7 +1,10 @@
 package dev.chuckbot;
 
 import org.junit.jupiter.api.*;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +14,32 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class JokesFilePersistenceTest {
 
+
+
     @Test
     @Order(1)
     void loadDataImportJokes() {
+        // HINT: This test case contains an example how to test the result by reassigning the output stream
         // In case, a valid import source with only valid strings and seperators in each row, is handed over, import all lines
         JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBejokes.txt"));
-        assertEquals(6, persistence.loadData().size());
+        List<Joke> jokeList = persistence.loadData();
+
+        // Define standard output
+        PrintStream standardOut = System.out;
+
+        //Reassign the standard output stream to a new PrintStream with a ByteArrayOutputStream.
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        // Print the joke text to the reassigned output stream, so it can be tested
+        System.out.println(jokeList.get(0).getJokeText());
+
+        //Tests
+        assertEquals(6, jokeList.size());
+        assertEquals("Chuck Norris circumcised himself. At birth. With his bare hands.", outputStreamCaptor.toString().trim());
+
+        // Set the output stream back to standard
+        System.setOut(standardOut);
     }
 
     @Test
