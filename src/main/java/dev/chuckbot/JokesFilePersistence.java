@@ -37,10 +37,17 @@ public class JokesFilePersistence implements JokesPersistence {
                 //Create List of Jokes
                 for (String s : inputList) {
                     String[] currentJoke = s.split(";");
+                    //Check,if the array has at least two colums (joke and date as String)
                     if (currentJoke.length == 2) {
+                        //
+                        //Check, if the field for the joke is not an emtpy string
                         if (!currentJoke[0].isEmpty()) {
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                            jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1], dtf)));
+                            //Check, if the field for the date contains a parsable dateformat
+                            // and in case, import both, joke and date, into the list 'jokelist'
+                            if (isParsableToLocaldate(currentJoke[1], dtf)){
+                                jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1], dtf)));
+                            }
                         }
                     }
                 }
@@ -83,5 +90,15 @@ public class JokesFilePersistence implements JokesPersistence {
         } catch (IOException e) {
             System.err.println("Tried to export jokes but something went terribly wrong (this is no joke!)");
         }
+    }
+
+    // Helpermethod to check, wether the string in file could be parsed to localdate or not, based on the specified dateformat
+    private static boolean isParsableToLocaldate(String dateStr, DateTimeFormatter dateFormatter) {
+        try {
+            LocalDate.parse(dateStr, dateFormatter);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 }

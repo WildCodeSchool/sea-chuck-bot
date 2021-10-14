@@ -55,11 +55,27 @@ class JokesFilePersistenceTest {
     }
 
     @Test
+    void loadDataSeparatorMissingDateNULL() {
+        // In case, that after the first seperator no value is located (empty/null), don't import this record
+        JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBeJokes_DateFormatMissingDate.txt"));
+        assertEquals(5, persistence.loadData().size());
+    }
+
+    @Test
+    void loadDataSeparatorMissingDateUnidentifiedString() {
+        // In case, that after the first seperator no value is located (empty/null), don't import this record
+        JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBeJokes_DateFormatMissingDateUnidentifiedString.txt"));
+        assertEquals(5, persistence.loadData().size());
+    }
+
+
+    @Test
     void loadDataSeparator() {
         JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBeJokes_Separator.txt"));
 
         assertEquals(5, persistence.loadData().size());
     }
+
 
     @Test
     void storeData() {
