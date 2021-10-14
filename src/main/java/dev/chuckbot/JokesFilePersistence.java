@@ -16,7 +16,7 @@ import java.util.List;
 
 public class JokesFilePersistence implements JokesPersistence {
 
-    private File storage;
+    private final File storage;
 
     public JokesFilePersistence(File storage) {
         this.storage = storage;
@@ -25,7 +25,6 @@ public class JokesFilePersistence implements JokesPersistence {
     @Override
     public List<Joke> loadData() {
         //created data structure
-
         List<Joke> jokeList = new ArrayList<>();
 
         //check if file exists
@@ -37,17 +36,13 @@ public class JokesFilePersistence implements JokesPersistence {
 
                 //Create List of Jokes
                 for (String s : inputList) {
-
                     String[] currentJoke = s.split(";");
-
-                    if(currentJoke.length == 2){
+                    if (currentJoke.length == 2) {
                         if (!currentJoke[0].isEmpty()) {
-
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                            jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1],dtf)));
+                            jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1], dtf)));
                         }
                     }
-
                 }
 
                 //Check if jokesList is empty
@@ -58,25 +53,21 @@ public class JokesFilePersistence implements JokesPersistence {
                     System.out.println("import successful");
                     return jokeList;
                 }
-
             } catch (MalformedInputException e) {
                 System.err.println("Wrong file type!");
                 return new ArrayList<>();
-            } catch (DateTimeParseException e){
-                    System.err.println("Wrong date format.");
-                    return new ArrayList<>();
+            } catch (DateTimeParseException e) {
+                System.err.println("Wrong date format.");
+                return new ArrayList<>();
             } catch (IOException e) {
                 System.err.println("Import error!");
                 return new ArrayList<>();
             }
-
         } else {
             System.err.println("Import error! File does not exist.");
             return new ArrayList<>();
         }
-
     }
-
 
     @Override
     public void storeData(List<Joke> jokes) {
@@ -92,7 +83,5 @@ public class JokesFilePersistence implements JokesPersistence {
         } catch (IOException e) {
             System.err.println("Tried to export jokes but something went terribly wrong (this is no joke!)");
         }
-
     }
-
 }
