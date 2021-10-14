@@ -37,11 +37,23 @@ public class JokesFilePersistence implements JokesPersistence {
                 //Create List of Jokes
                 for (String s : inputList) {
                     String[] currentJoke = s.split(";");
+
+                    //Check if multiple Separators exists
                     if (currentJoke.length == 2) {
                         if (!currentJoke[0].isEmpty()) {
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                             jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1], dtf)));
                         }
+                    }else{
+                        String joke = "";
+                        for (int i=0; i < currentJoke.length-1;i++){
+                            if (i == currentJoke.length-2){
+                                joke = joke + currentJoke[i];
+                            }else{
+                                joke = joke + currentJoke[i] + ";";
+                            }
+                        }
+                        jokeList.add(new Joke(joke, LocalDate.parse(currentJoke[currentJoke.length-1])));
                     }
                 }
 

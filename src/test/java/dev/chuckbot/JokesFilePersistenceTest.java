@@ -62,6 +62,13 @@ class JokesFilePersistenceTest {
     }
 
     @Test
+    void loadDataMultipleSeparator() {
+        JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBeJokes_MultipleSeparator.txt"));
+
+        assertEquals(6, persistence.loadData().size());
+    }
+
+    @Test
     void storeData() {
         JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBeJokesLoadData.txt"));
         List<Joke> importedJokeList = persistence.loadData();
