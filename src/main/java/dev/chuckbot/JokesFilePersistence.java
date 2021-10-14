@@ -61,10 +61,10 @@ public class JokesFilePersistence implements JokesPersistence {
 
                 //Check if jokesList is empty
                 if (jokeList.isEmpty()) {
-                    System.err.println(className + " --- IMPORT FAILED --- File is empty. Couldn't import!");
+                    System.err.println(className + " --- IMPORT FAILED --- No valid entries to import found in source file!");
                     return new ArrayList<>();
                 } else {
-                    System.out.println(className + " --- IMPORT SUCCESSFUL --- Imported " + rowsImported + " out of " + rowsCount + " jokes in source file");
+                    System.out.println(className + " --- IMPORT SUCCESSFUL --- Imported " + rowsImported + " out of " + rowsCount + " jokes in source file!");
                     return jokeList;
                 }
             } catch (MalformedInputException e) {
