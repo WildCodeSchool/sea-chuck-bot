@@ -53,7 +53,8 @@ public class JokesFilePersistence implements JokesPersistence {
                                 joke = joke + currentJoke[i] + ";";
                             }
                         }
-                        jokeList.add(new Joke(joke, LocalDate.parse(currentJoke[currentJoke.length-1])));
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        jokeList.add(new Joke(joke, LocalDate.parse(currentJoke[currentJoke.length-1],dtf)));
                     }
                 }
 
