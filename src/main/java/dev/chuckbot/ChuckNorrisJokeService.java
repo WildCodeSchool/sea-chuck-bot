@@ -1,10 +1,12 @@
 package dev.chuckbot;
 
 import dev.chuckbot.util.ChuckPrint;
-import dev.chuckbot.util.CreationDateComparator;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ChuckNorrisJokeService {
 
@@ -27,12 +29,8 @@ public class ChuckNorrisJokeService {
         ChuckPrint.printAllJokes(jokeSet);
     }
 
-    public Joke getNewestJoke() {
+    public void getNewestJoke() {
         // Team MDR stellt Methode zur Verfügung, der wir die unsortierte Liste übergeben und durch die Methode sortiert zurückgegeben wird.
-
-        Collections.sort(jokeList, new CreationDateComparator());
-
-        return jokeList.get(jokeList.size()-1);
 
     }
 
