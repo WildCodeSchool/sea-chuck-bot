@@ -17,6 +17,7 @@ import java.util.List;
 public class JokesFilePersistence implements JokesPersistence {
 
     private final File storage;
+    private final String className = this.getClass().getSimpleName();
 
     public JokesFilePersistence(File storage) {
         this.storage = storage;
@@ -24,6 +25,10 @@ public class JokesFilePersistence implements JokesPersistence {
 
     @Override
     public List<Joke> loadData() {
+
+        int rowsCount = 0;
+        int rowsImported = 0;
+
         //created data structure
         List<Joke> jokeList = new ArrayList<>();
 
@@ -37,9 +42,10 @@ public class JokesFilePersistence implements JokesPersistence {
                 //Create List of Jokes
                 for (String s : inputList) {
                     String[] currentJoke = s.split(";");
+                    rowsCount++;
+
                     //Check,if the array has at least two colums (joke and date as String)
                     if (currentJoke.length == 2) {
-                        //
                         //Check, if the field for the joke is not an emtpy string
                         if (!currentJoke[0].isEmpty()) {
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -47,6 +53,7 @@ public class JokesFilePersistence implements JokesPersistence {
                             // and in case, import both, joke and date, into the list 'jokelist'
                             if (isParsableToLocaldate(currentJoke[1], dtf)){
                                 jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1], dtf)));
+                                rowsImported++;
                             }
                         }
                     }
@@ -54,24 +61,24 @@ public class JokesFilePersistence implements JokesPersistence {
 
                 //Check if jokesList is empty
                 if (jokeList.isEmpty()) {
-                    System.err.println("File is empty. Couldn't import!");
+                    System.err.println(className + " --- IMPORT FAILED --- File is empty. Couldn't import!");
                     return new ArrayList<>();
                 } else {
-                    System.out.println("import successful");
+                    System.out.println(className + " --- IMPORT SUCCESSFUL --- Imported " + rowsImported + " out of " + rowsCount + " jokes in source file");
                     return jokeList;
                 }
             } catch (MalformedInputException e) {
-                System.err.println("Wrong file type!");
+                System.err.println(className + " --- IMPORT FAILED --- Wrong file type!");
                 return new ArrayList<>();
             } catch (DateTimeParseException e) {
-                System.err.println("Wrong date format.");
+                System.err.println(className + " --- IMPORT FAILED --- Wrong date format!");
                 return new ArrayList<>();
             } catch (IOException e) {
-                System.err.println("Import error!");
+                System.err.println(className + " --- IMPORT FAILED --- Something went completely wrong!");
                 return new ArrayList<>();
             }
         } else {
-            System.err.println("Import error! File does not exist.");
+            System.err.println(className + " --- IMPORT FAILED --- File does not exist!");
             return new ArrayList<>();
         }
     }
@@ -85,10 +92,10 @@ public class JokesFilePersistence implements JokesPersistence {
                 //writer.append(currJoke.serializedCSV());
                 writer.append(currJoke.getJokeText() + ";" + currJoke.getCreationDate() + "\n");
             }
-            System.out.println("Jokes stored successfully!");
+            System.out.println(className + " --- STORE SUCCESSFUL --- Jokes stored successfully!");
 
         } catch (IOException e) {
-            System.err.println("Tried to export jokes but something went terribly wrong (this is no joke!)");
+            System.err.println(className + " --- STORE FAILED --- Tried to export jokes but something went terribly wrong (this is no joke!)");
         }
     }
 
