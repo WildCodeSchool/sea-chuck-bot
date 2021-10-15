@@ -28,4 +28,12 @@ public class Joke {
         this.creationDate = creationDate;
     }
 
+
+    @Override
+    public String toString() {
+        return "Joke{" +
+                "jokeText='" + jokeText + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
+    }
 }
