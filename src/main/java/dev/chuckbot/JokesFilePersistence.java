@@ -17,7 +17,7 @@ import java.util.List;
 public class JokesFilePersistence implements JokesPersistence {
 
     private final File storage;
-    private final String className = this.getClass().getSimpleName();
+    private final static String className = JokesFilePersistence.class.getSimpleName();
 
     public JokesFilePersistence(File storage) {
         this.storage = storage;
@@ -51,11 +51,15 @@ public class JokesFilePersistence implements JokesPersistence {
                             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                             //Check, if the field for the date contains a parsable dateformat
                             // and in case, import both, joke and date, into the list 'jokelist'
-                            if (isParsableToLocaldate(currentJoke[1], dtf)){
+                            if (isParsableToLocaldate(currentJoke[1], dtf, rowsCount)){
                                 jokeList.add(new Joke(currentJoke[0], LocalDate.parse(currentJoke[1], dtf)));
                                 rowsImported++;
                             }
+                        } else {
+                            System.err.println(className + " --- JOKE RECORD NOT VALID --- Tried to import joke record but string which should contain the joke is empty! -- (row: " + rowsCount + ")");
                         }
+                    } else {
+                        System.err.println(className + " --- JOKE RECORD NOT VALID --- Tried to import joke record but a record could not be splitted into two strings (joke and date)! -- (row: " + rowsCount + ")");
                     }
                 }
 
@@ -100,10 +104,11 @@ public class JokesFilePersistence implements JokesPersistence {
     }
 
     // Helpermethod to check, wether the string in file could be parsed to localdate or not, based on the specified dateformat
-    private static boolean isParsableToLocaldate(String dateStr, DateTimeFormatter dateFormatter) {
+    private static boolean isParsableToLocaldate(String dateStr, DateTimeFormatter dateFormatter, int rowsCount) {
         try {
             LocalDate.parse(dateStr, dateFormatter);
         } catch (DateTimeParseException e) {
+            System.err.println(className + " --- JOKE RECORD NOT VALID --- Tried to import joke record but string is not parsable to date (" + dateStr + ") -- (row: " + rowsCount + ")");
             return false;
         }
         return true;
