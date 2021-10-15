@@ -1,5 +1,6 @@
 package dev.chuckbot;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -65,33 +66,34 @@ class JokesFilePersistenceTest {
         JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/RiBeJokesLoadData.txt"));
         List<Joke> importedJokeList = persistence.loadData();
 
-        Joke myFirstJoke = new Joke("Chuck Norris wurde gestern geblitzt – beim Einparken.", LocalDate.now());
-        importedJokeList.add(myFirstJoke);
-
-
+        importedJokeList.add(new Joke("Chuck Norris wurde gestern geblitzt – beim Ausparken.", LocalDate.now()));
         persistence.storeData(importedJokeList);
-
         assertEquals(7, persistence.loadData().size());
 
-        //importedJokeList.remove(importedJokeList.size()-1);
-        importedJokeList.remove(6);
+        importedJokeList.remove(importedJokeList.size()-1);
         persistence.storeData(importedJokeList);
-
     }
+
     @Test
-    void storeDataFileNotExist(){
-        JokesPersistence persistence = new JokesFilePersistence(new File("src/test/resources/michgibtesnicht.txt"));
+    void storeDataFileNotExist() {
+        File myFile = new File("src/test/resources/michgibtesnicht.txt");
+        JokesPersistence persistence = new JokesFilePersistence(myFile);
+
         List<Joke> newJokeList = new ArrayList<>();
-
-        Joke myFirstJoke = new Joke("Chuck Norris wurde gestern geblitzt – beim Einparken.", LocalDate.now());
-        newJokeList.add(myFirstJoke);
-
-
+        newJokeList.add(new Joke("Chuck Norris wurde gestern geblitzt – beim Einparken.", LocalDate.now()));
         persistence.storeData(newJokeList);
 
         assertEquals(1, persistence.loadData().size());
+    }
 
-        //importedJokeList.remove(importedJokeList.size()-1);
-
+    @AfterAll
+    public static void cleanUp() {
+        System.out.println("Running: cleanUp");
+        File myFile = new File("src/test/resources/michgibtesnicht.txt");
+        if (myFile.delete()) {
+            System.err.println("cleanUp: File deleted successfully");
+        } else {
+            System.out.println("cleanUp: Failed to delete the file");
+        }
     }
 }
