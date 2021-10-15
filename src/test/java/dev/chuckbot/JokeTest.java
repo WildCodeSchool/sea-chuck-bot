@@ -23,7 +23,6 @@ public class JokeTest {
         // Arrange
         DateTimeFormatter testDateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate sixthOfSeptember = LocalDate.parse("06.09.2021", testDateFormat);
-        LocalDate creationDate = LocalDate.now();
         // Act
         Joke joke2test = new Joke("Joke2", sixthOfSeptember);
         // Assert
