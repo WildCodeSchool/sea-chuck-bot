@@ -8,10 +8,14 @@ import java.util.Set;
 public class ChuckBotStarter {
 
     public static void main(String[] args) {
+        // Welche Datei wird als Persistenz genutzt?
         File f = new File(args[0]);
         JokesPersistence filePersistence = new JokesFilePersistence(f);
 
+        // Erstelle Service und übergebe Persistenz
         ChuckNorrisJokeService service = new ChuckNorrisJokeService(filePersistence);
+
+        // Initialisiere Service
         service.initialize();
 
         if (args.length > 0) {
