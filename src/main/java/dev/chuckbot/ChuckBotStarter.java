@@ -34,7 +34,7 @@ public class ChuckBotStarter implements CommandLineRunner {
             service.initialize();
 
             // Create Mocked Service
-            MockedChatService mockedChatService = new MockedChatService("general", "#whataboutchuck", service);
+            MockedChatService mockedChatService = new MockedChatService("general", "whataboutchuck", service);
 
             switch (args[0]) {
                 case "print": service.printAllJokes(); break; // print all jokes
