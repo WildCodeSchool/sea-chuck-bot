@@ -1,0 +1,14 @@
+<table>
+    <thead>
+    <tr>
+        <th>Joke</th>
+        <th>Added On</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="joke : ${jokes}">
+        <td th:text="${joke.jokeText}"></td>
+        <td th:text="${joke.added}"></td>
+    </tr>
+    </tbody>
+</table>
