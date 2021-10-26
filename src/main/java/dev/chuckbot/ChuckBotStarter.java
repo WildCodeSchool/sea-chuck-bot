@@ -27,6 +27,7 @@ public class ChuckBotStarter implements CommandLineRunner {
             DatasourceFactory fac = new DatasourceFactory();
             PreparedStatementJokeDao preparedStatementJokeDao = new PreparedStatementJokeDao(fac.getConnection());
             JokesPersistence dbPersistence = new JokesDBPersistence(preparedStatementJokeDao);
+
             // Erstelle Service und übergebe Persistenz
             ChuckNorrisJokeService service = new ChuckNorrisJokeService(dbPersistence);
 
