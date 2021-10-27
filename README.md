@@ -3,6 +3,10 @@ The Chuck Bot should be able to read messages in a specific RocketChat Channel a
 
 ![](docs/img/SEA_ChuckBot_Vision.png)
 
+## Persistence Architecture
+
+![](docs/img/SEA_ChuckBot_Architecture.png)
+
 ## Iterations of Chuck Bot
 
 ### Chuck Mocked
