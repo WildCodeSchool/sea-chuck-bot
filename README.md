@@ -7,8 +7,11 @@ The Chuck Bot should be able to read messages in a specific RocketChat Channel a
 
 ![](docs/img/SEA_ChuckBot_Architecture.png)
 
-## Iterations of Chuck Bot
+## Communication Diagram 
 
+![](docs/img/SEA_ChuckBot_CommDiag.png)
+
+## Iterations of Chuck Bot
 ### Chuck Mocked
 This is a simple Java project which mocks the retrieval and the pushing of jokes with in most simple Java with no dependencies.
 
