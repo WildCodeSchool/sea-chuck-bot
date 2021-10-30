@@ -11,12 +11,6 @@ public class CreationDateComparator implements Comparator<Joke> {
         LocalDate joke1CreationDate = joke1.getCreationDate();
         LocalDate joke2CreationDate = joke2.getCreationDate();
 
-        if (joke1CreationDate.compareTo(joke2CreationDate) > 1) {
-            return 1;
-        } else if (joke1CreationDate.compareTo(joke2CreationDate) < 1) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return joke1CreationDate.compareTo(joke2CreationDate);
     }
 }
