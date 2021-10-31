@@ -2,12 +2,6 @@ package dev.chuckbot.service;
 
 import dev.chuckbot.ChuckNorrisJokeService;
 import dev.chuckbot.Joke;
-import dev.chuckbot.persistence.DatasourceFactory;
-import dev.chuckbot.persistence.JokeEntity;
-import dev.chuckbot.persistence.PreparedStatementJokeDao;
-import org.springframework.ui.Model;
-
-import java.util.List;
 
 public class MockedChatService {
 
