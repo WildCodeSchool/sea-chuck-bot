@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@Controller
+@Controller()
 public class JokeController {
 
     private PreparedStatementJokeDao preparedStatementJokeDao;
@@ -23,7 +23,7 @@ public class JokeController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("/view/jokes")
     public String main(Model model) {
         try {
             List<JokeEntity> jokeEntities = preparedStatementJokeDao.getAll();
