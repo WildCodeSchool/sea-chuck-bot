@@ -4,10 +4,18 @@ import java.time.LocalDate;
 
 public class Joke {
 
+    // TODO: Team MDR und MAC informieren, dass Joke angepasst werden muss!
+    private int id;
     private String jokeText;
     private LocalDate creationDate;
 
     public Joke(String jokeText, LocalDate creationDate) {
+        this.jokeText = jokeText;
+        this.creationDate = creationDate;
+    }
+
+    public Joke(int id, String jokeText, LocalDate creationDate) {
+        this.id = id;
         this.jokeText = jokeText;
         this.creationDate = creationDate;
     }
