@@ -1,5 +1,7 @@
-package dev.chuckbot;
+package dev.chuckbot.service;
 
+import dev.chuckbot.Joke;
+import dev.chuckbot.JokesPersistence;
 import dev.chuckbot.util.ChuckPrint;
 import dev.chuckbot.util.CreationDateComparator;
 

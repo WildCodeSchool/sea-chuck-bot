@@ -1,9 +1,8 @@
 package dev.chuckbot;
 
-import dev.chuckbot.util.ChuckPrint;
+import dev.chuckbot.service.ChuckNorrisJokeService;
 
 import java.io.File;
-import java.util.Set;
 
 public class ChuckBotStarter {
 
