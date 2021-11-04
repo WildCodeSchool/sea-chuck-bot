@@ -11,6 +11,16 @@ The Chuck Bot should be able to read messages in a specific RocketChat Channel a
 
 ![](docs/img/SEA_ChuckBot_CommDiag.png)
 
+### Setup
+
+* In root directory: `docker-compose up -d`
+* Go to http://localhost:3000
+* Setup admin etc.
+* Add user "bot", password "botpassword", role "bot"
+* Start Spring Application
+* Restart docker(?)
+* Write in general channel: `@bot whataboutchuck`
+
 ## Iterations of Chuck Bot
 ### Chuck Mocked
 This is a simple Java project which mocks the retrieval and the pushing of jokes with in most simple Java with no dependencies.
