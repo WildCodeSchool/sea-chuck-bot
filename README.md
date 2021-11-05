@@ -9,8 +9,14 @@ The Chuck Bot should be able to read messages in a specific RocketChat Channel a
 
 ### Setup
 
-* In root directory: `docker-compose up -d`
-* Go to http://localhost:3000
+#### Prerequisites
+
+* Installed Docker (Desktop): https://www.docker.com/products/docker-desktop
+
+#### Steps to Setup Rocket.Chat with RC-Bot "Hubot"
+
+* In root directory of this repository: `docker-compose up -d`
+* Go to [http://localhost:3000](http://localhost:3000)
 * Setup admin etc.
 * Add user "bot", password "botpassword", role "bot"
 * Start Spring Application
