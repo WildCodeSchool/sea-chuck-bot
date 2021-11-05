@@ -1,15 +1,27 @@
 # Chuck Bot
 The Chuck Bot should be able to read messages in a specific RocketChat Channel and react to the command **#whataboutchuck** with a fact about Chuck Norris life, like **Chuck Norris counted to infinity... twice**.
 
-![](docs/img/SEA_ChuckBot_Vision.png)
+![](docs/img/SEA_ChuckBot_CommDiag.png)
 
 ## Persistence Architecture
 
 ![](docs/img/SEA_ChuckBot_Architecture.png)
 
-## Communication Diagram 
+### Setup
 
-![](docs/img/SEA_ChuckBot_CommDiag.png)
+#### Prerequisites
+
+* Installed Docker (Desktop): https://www.docker.com/products/docker-desktop
+
+#### Steps to Setup Rocket.Chat with RC-Bot "Hubot"
+
+* In root directory of this repository: `docker-compose up -d`
+* Go to [http://localhost:3000](http://localhost:3000)
+* Setup admin etc.
+* Add user "bot", password "botpassword", role "bot"
+* Start Spring Application
+* Restart docker for bot to log in
+* Write in general channel: `@bot whataboutchuck`
 
 ## Iterations of Chuck Bot
 ### Chuck Mocked
