@@ -6,18 +6,16 @@ import dev.chuckbot.JokesPersistence;
 import dev.chuckbot.service.ChuckNorrisJokeService;
 import dev.chuckbot.util.CreationDateComparator;
 import dev.chuckbot.util.JokeTextComparator;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ChuckJokeController {
@@ -44,9 +42,9 @@ public class ChuckJokeController {
         return "/home.html";
     }
 
-    @PostMapping(value="/addNewJoke",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String addNewJoke(MultiValueMap paramMap){
-        System.out.println(paramMap);
+    @PostMapping(value="/addNewJoke")
+    public String addNewJoke(@RequestParam Map<String,String> allParams){
+        System.out.println(allParams);
         return "addNewJokeForm.html";
     }
 
