@@ -14,7 +14,7 @@ The Chuck Bot should be able to read messages in a specific RocketChat Channel a
 * Setup admin etc.
 * Add user "bot", password "botpassword", role "bot"
 * Start Spring Application
-* Restart docker(?)
+* Restart docker for bot to log in
 * Write in general channel: `@bot whataboutchuck`
 
 ## Iterations of Chuck Bot
