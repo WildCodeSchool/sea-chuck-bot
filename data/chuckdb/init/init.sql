@@ -1,3 +1,6 @@
+# SET UTF-8
+SET names 'utf8';
+
 # CREATE TABLE
 
 CREATE TABLE JOKES (
