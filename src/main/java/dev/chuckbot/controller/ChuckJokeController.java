@@ -25,35 +25,41 @@ import java.util.Map;
 @Controller
 public class ChuckJokeController {
 
-    @GetMapping("/alljokes")
-    public String displayAllJoke(Model model, @RequestParam String sort){
+    private ChuckNorrisJokeService jokeService;
 
-        //Muss entsprechend angepasst werden!!!!
-        final String URL = "jdbc:mysql://localhost/chuckbot";
-        final String USER = "chuck";
-        final String PASSWORD = "2508-Christiane!";
-
+    // Das passiert EINMALIG!
+    public ChuckJokeController() {
         try {
-            Connection conn = DriverManager.getConnection(URL,USER, PASSWORD);
+            //Muss entsprechend angepasst werden!!!!
+            final String URL = "jdbc:mysql://localhost/chuckbot";
+            final String USER = "chuck";
+            final String PASSWORD = "2508-Christiane!";
+
+            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
             JokesPersistence myPers = new DBPersistence(conn);
 
-            ChuckNorrisJokeService jokeService = new ChuckNorrisJokeService(myPers);
+            jokeService = new ChuckNorrisJokeService(myPers);
             jokeService.initialize();
-            List<Joke> jokeList = jokeService.getAllJokes();
-
-            if(sort.equals("date")){
-                Collections.sort(jokeList, new CreationDateComparator().reversed());
-                model.addAttribute("jokes", jokeList);
-            }else if(sort.equals("alphabetically")){
-                Collections.sort(jokeList, new JokeTextComparator());
-                model.addAttribute("jokes", jokeList);
-            }else{
-                model.addAttribute("jokes", jokeList);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            System.err.println("Das war nix: " + ex.getMessage());
         }
+    }
+
+    // Das passiert bei jedem Aufruf
+    @GetMapping("/alljokes")
+    public String displayAllJoke(Model model, @RequestParam String sort){
+        List<Joke> jokeList = jokeService.getAllJokes();
+
+        if(sort.equals("date")){
+            Collections.sort(jokeList, new CreationDateComparator().reversed());
+            model.addAttribute("jokes", jokeList);
+        }else if(sort.equals("alphabetically")){
+            Collections.sort(jokeList, new JokeTextComparator());
+            model.addAttribute("jokes", jokeList);
+        }else{
+            model.addAttribute("jokes", jokeList);
+        }
+
         return "/home.html";
     }
 

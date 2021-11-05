@@ -49,6 +49,5 @@ public class ChuckNorrisJokeService {
     public void shutdown() {
         //Team RiBe liefert Methode, der wir eine Liste übergeben können. Inhalt der Liste wird in txt-Datei geschrieben.
         persistence.storeData(jokeList);
-
     }
 }
