@@ -67,6 +67,31 @@ services:
       - rocketchat
     volumes:
       - ./data/hubot/scripts:/home/hubot/scripts
-  # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
+
+  # sql database for chuck norris jokes
+  chuckdb:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./data/chuckdb/db:/var/lib/mysql
+      - ./data/chuckdb/init:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=joker
+      - MYSQL_PASSWORD=jokingaround
+      - MYSQL_DATABASE=jokes
+
+  # spring boot application for chuck norris jokes
+  chuckjokeservice:
+    image: arazel/jokeservice:0.0.1
+    restart: unless-stopped
+    environment:
+      - MYSQL_DB_HOST=chuckdb
+      - MYSQL_DB_PORT=3306
+      - MYSQL_DB=jokes
+      - MYSQL_DB_USERNAME=joker
+      - MYSQL_DB_PASSWORD=jokingaround
+    depends_on:
+      - chuckdb
     ports:
-      - 3001:8080
+      - 8080:8080
