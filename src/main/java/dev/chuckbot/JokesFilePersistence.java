@@ -1,7 +1,5 @@
 package dev.chuckbot;
 
-import jdk.jshell.spi.ExecutionControl;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -88,7 +86,7 @@ public class JokesFilePersistence implements JokesPersistence {
     }
 
     @Override
-    public void storeDataSmart(List<Joke> jokes) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("Not implemented.");
+    public void storeDataSmart(List<Joke> jokes) {
+        throw new UnsupportedOperationException("Methode nicht implementiert");
     }
 }

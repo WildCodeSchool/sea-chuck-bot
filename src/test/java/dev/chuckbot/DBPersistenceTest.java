@@ -1,6 +1,5 @@
 package dev.chuckbot;
 
-import jdk.jshell.spi.ExecutionControl;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -44,19 +43,7 @@ class DBPersistenceTest {
     }
 
     @Test
-    void loadDataEmptyDB() throws SQLException {
-        JokesPersistence myPers = new DBPersistence(conn);
-        Statement s = conn.createStatement();
-        s.execute("TRUNCATE JOKES");
-
-        List<Joke> testJokes = myPers.loadData();
-
-        assertTrue(testJokes.size()==0, "Die Datenbank sollte mindestens einen Eintrag enthalten.");
-    }
-
-    @Test
     void storeData() {
-
         List<Joke> list = new ArrayList<>();
         list.add(new Joke("Eldor findet meinen Witz fantasielos.", LocalDate.now()));
         JokesPersistence myPers = new DBPersistence(conn);
@@ -66,7 +53,7 @@ class DBPersistenceTest {
     }
 
     @Test
-    void storeDataSmart() throws ExecutionControl.NotImplementedException {
+    void storeDataSmart() {
 
         List<Joke> list = new ArrayList<>();
         list.add(new Joke("Eldor findet meinen Witz besonders fantasielos.", LocalDate.now()));

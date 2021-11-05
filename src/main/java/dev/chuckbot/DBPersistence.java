@@ -1,7 +1,5 @@
 package dev.chuckbot;
 
-import jdk.jshell.spi.ExecutionControl;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -56,7 +54,7 @@ public class DBPersistence implements JokesPersistence {
     }
 
     @Override
-    public void storeDataSmart(List<Joke> jokes) throws ExecutionControl.NotImplementedException {
+    public void storeDataSmart(List<Joke> jokes) {
 
 
         for(Joke j: jokes){
