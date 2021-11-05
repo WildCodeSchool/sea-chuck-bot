@@ -1,5 +1,7 @@
 package dev.chuckbot;
 
+import jdk.jshell.spi.ExecutionControl;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,5 +53,32 @@ public class DBPersistence implements JokesPersistence {
 
         }
 
+    }
+
+    @Override
+    public void storeDataSmart(List<Joke> jokes) throws ExecutionControl.NotImplementedException {
+
+
+        for(Joke j: jokes){
+            try(PreparedStatement ps = conn.prepareStatement("Select * from JOKES where JOKETEXT=?")){
+                ps.setString(1, j.getJokeText());
+                ResultSet rs = ps.executeQuery();
+
+                if(!rs.next()){
+                    try(PreparedStatement psInsert = conn.prepareStatement("Insert into JOKES (JOKETEXT, ADDED) Values (?,?)")){
+                        psInsert.setString(1, j.getJokeText());
+                        psInsert.setDate(2, Date.valueOf(j.getCreationDate()));
+                        psInsert.execute();
+                        System.out.println("Eintrag added.");
+                    }catch(SQLException e){
+                        e.printStackTrace();
+                    }
+                }else{
+                    System.out.println("Eintrag mit ID " + j.getId() + " bereits vorhanden.");
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
     }
 }

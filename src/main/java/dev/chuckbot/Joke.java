@@ -20,6 +20,10 @@ public class Joke {
         this.creationDate = creationDate;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getJokeText() {
         return jokeText;
     }
