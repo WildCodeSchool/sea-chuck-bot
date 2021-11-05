@@ -1,7 +1,8 @@
 # CREATE USER AND DATABASE
 
-CREATE USER 'chuck'@'localhost' IDENTIFIED BY 'norris';
+CREATE USER 'chuck'@'localhost' IDENTIFIED BY '2508-Christiane!';
 CREATE DATABASE chuckbot;
+USE chuckbot;
 GRANT ALL PRIVILEGES ON chuckbot.* TO 'chuck'@'localhost';
 FLUSH PRIVILEGES;
 

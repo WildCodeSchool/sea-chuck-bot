@@ -1,5 +1,7 @@
-package dev.chuckbot;
+package dev.chuckbot.service;
 
+import dev.chuckbot.Joke;
+import dev.chuckbot.JokesPersistence;
 import dev.chuckbot.util.ChuckPrint;
 import dev.chuckbot.util.CreationDateComparator;
 
@@ -14,7 +16,7 @@ public class ChuckNorrisJokeService {
         this.persistence = persistence;
     }
 
-    List<Joke> jokeList = new ArrayList<Joke>();
+    public List<Joke> jokeList = new ArrayList<Joke>();
 
     public void initialize() {
         //Team RiBe liefert Methode mit Set als Rückgabewert. Set enthält alle Jokes aus txt-Datei.
@@ -33,6 +35,10 @@ public class ChuckNorrisJokeService {
         Collections.sort(jokeList, new CreationDateComparator());
 
         return jokeList.get(jokeList.size()-1);
+    }
+
+    public List getAllJokes(){
+        return jokeList;
     }
 
     public void addNewJoke(Joke joke) {
