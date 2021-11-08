@@ -113,4 +113,9 @@ public class JokesFilePersistence implements JokesPersistence {
         }
         return true;
     }
+
+    @Override
+    public void deleteByID(int id) {
+
+    }
 }

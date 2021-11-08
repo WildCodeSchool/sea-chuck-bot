@@ -37,7 +37,8 @@ public class ChuckNorrisJokeService {
         return jokeList.get(jokeList.size()-1);
     }
 
-    public List getAllJokes(){
+    public List<Joke> getAllJokes(){
+        jokeList = persistence.loadData();
         return jokeList;
     }
 
@@ -49,5 +50,9 @@ public class ChuckNorrisJokeService {
     public void shutdown() {
         //Team RiBe liefert Methode, der wir eine Liste übergeben können. Inhalt der Liste wird in txt-Datei geschrieben.
         persistence.storeData(jokeList);
+    }
+
+    public void deleteByID(int id){
+        persistence.deleteByID(id);
     }
 }

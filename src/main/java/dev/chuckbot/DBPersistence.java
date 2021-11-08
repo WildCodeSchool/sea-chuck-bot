@@ -79,4 +79,15 @@ public class DBPersistence implements JokesPersistence {
             }
         }
     }
+
+    public void deleteByID(int id){
+
+        try(PreparedStatement ps = conn.prepareStatement("delete from JOKES where id=?")){
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+    }
 }

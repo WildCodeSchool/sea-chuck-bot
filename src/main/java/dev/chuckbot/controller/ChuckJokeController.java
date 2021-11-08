@@ -1,15 +1,13 @@
 package dev.chuckbot.controller;
 
-import dev.chuckbot.DBPersistence;
-import dev.chuckbot.Joke;
-import dev.chuckbot.JokesFilePersistence;
-import dev.chuckbot.JokesPersistence;
+import dev.chuckbot.*;
 import dev.chuckbot.service.ChuckNorrisJokeService;
 import dev.chuckbot.util.CreationDateComparator;
 import dev.chuckbot.util.JokeTextComparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,30 +45,48 @@ public class ChuckJokeController {
 
     // Das passiert bei jedem Aufruf
     @GetMapping("/alljokes")
-    public String displayAllJoke(Model model, @RequestParam String sort){
+    public String displayAllJoke(Model model, @RequestParam (required = false, defaultValue = "") String sort) {
+
         List<Joke> jokeList = jokeService.getAllJokes();
 
-        if(sort.equals("date")){
+        if (sort.equals("date")) {
             Collections.sort(jokeList, new CreationDateComparator().reversed());
             model.addAttribute("jokes", jokeList);
-        }else if(sort.equals("alphabetically")){
+        } else if (sort.equals("alphabetically")) {
             Collections.sort(jokeList, new JokeTextComparator());
             model.addAttribute("jokes", jokeList);
-        }else{
+        } else {
             model.addAttribute("jokes", jokeList);
         }
 
         return "/home.html";
     }
 
-    @PostMapping(value="/addNewJoke")
-    public String addNewJoke(@RequestParam Map<String,String> allParams){
-        System.out.println(allParams);
+    @GetMapping("/addNewJokeForm")
+    public String getJoke() {
+
         return "addNewJokeForm.html";
     }
 
-    @GetMapping("/addNewJokeForm")
-    public String addNewJoke(){
-        return "addNewJokeForm.html";
+
+    @PostMapping("/addNewJoke")
+    public String addNewJoke(@ModelAttribute JokeDTO j) {
+
+        Joke joke = new Joke(j.getJokeText(), j.getCreationDate());
+
+        jokeService.addNewJoke(joke);
+        jokeService.shutdown();
+        return "redirect:/alljokes";
+
     }
+
+    @GetMapping("/delete")
+    public String deleteJoke(@RequestParam int id){
+        jokeService.deleteByID(id);
+
+        return "redirect:/alljokes";
+    }
+
 }
+
+

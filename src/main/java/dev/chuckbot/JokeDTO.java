@@ -1,30 +1,19 @@
 package dev.chuckbot;
 
+import org.apache.tomcat.jni.Local;
+
 import java.time.LocalDate;
 
-public class Joke {
+public class JokeDTO {
 
     // TODO: Team MDR und MAC informieren, dass Joke angepasst werden muss!
-    private int id;
+
     private String jokeText;
     private LocalDate creationDate;
 
-    public Joke(String jokeText, LocalDate creationDate) {
+    public JokeDTO(String jokeText) {
         this.jokeText = jokeText;
-        this.creationDate = creationDate;
-    }
-
-    public Joke(int id, String jokeText, LocalDate creationDate) {
-        this.id = id;
-        this.jokeText = jokeText;
-        this.creationDate = creationDate;
-    }
-
-    public Joke(){
-    }
-
-    public int getId() {
-        return id;
+        this.creationDate = LocalDate.now();
     }
 
     public String getJokeText() {

@@ -54,7 +54,9 @@
 <table>
     <thead>
     <tr>
+        <th> ID </th>
         <th> Joke </th>
+        <th> Remove </th>
         <th> Date </th>
     </tr>
     </thead>
@@ -63,7 +65,9 @@
         <td colspan="2"> No Jokes Available </td>
     </tr>
     <tr th:each="joke : ${jokes}">
+        <td><span th:text="${joke.id}"> ID </span></td>
         <td><span th:text="${joke.jokeText}"> Joke </span></td>
+        <td><a th:href="@{/delete(id=${joke.id})}">Remove</a></td>
         <td><span th:text="${joke.creationDate}"> Date </span></td>
     </tr>
     </tbody>
