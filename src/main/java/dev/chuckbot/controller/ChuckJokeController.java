@@ -47,9 +47,14 @@ public class ChuckJokeController {
 
     // Das passiert bei jedem Aufruf
     @GetMapping("/alljokes")
-    public String displayAllJoke(Model model, @RequestParam String sort){
+    public String displayAllJoke(Model model, @RequestParam(required = false, defaultValue = "") String sort){
         List<Joke> jokeList = jokeService.getAllJokes();
 
+        sortJokes(model, sort, jokeList);
+        return "/home.html";
+    }
+
+    private void sortJokes(Model model, String sort, List<Joke> jokeList) {
         if(sort.equals("date")){
             Collections.sort(jokeList, new CreationDateComparator().reversed());
             model.addAttribute("jokes", jokeList);
@@ -59,8 +64,6 @@ public class ChuckJokeController {
         }else{
             model.addAttribute("jokes", jokeList);
         }
-
-        return "/home.html";
     }
 
     @PostMapping(value="/addNewJoke")

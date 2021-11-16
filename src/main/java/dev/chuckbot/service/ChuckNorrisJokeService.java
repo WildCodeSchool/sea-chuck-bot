@@ -14,9 +14,10 @@ public class ChuckNorrisJokeService {
 
     public ChuckNorrisJokeService(JokesPersistence persistence) {
         this.persistence = persistence;
+        this.jokeList = new ArrayList<Joke>();
     }
 
-    public List<Joke> jokeList = new ArrayList<Joke>();
+    public List<Joke> jokeList;
 
     public void initialize() {
         //Team RiBe liefert Methode mit Set als Rückgabewert. Set enthält alle Jokes aus txt-Datei.
