@@ -1,72 +1,103 @@
 version: '3'
 
 services:
-  rocketchat:
-    image: registry.rocket.chat/rocketchat/rocket.chat:latest
-    command: >
-      bash -c
-        "for i in `seq 1 30`; do
-          node main.js &&
-          s=$$? && break || s=$$?;
-          echo \"Tried $$i times. Waiting 5 secs...\";
-          sleep 5;
-        done; (exit $$s)"
-    restart: unless-stopped
-    volumes:
-      - ./data/rocketchat/uploads:/app/uploads
-    environment:
-      - PORT=3000
-      - ROOT_URL=http://localhost:3000
-      - MONGO_URL=mongodb://mongo:27017/rocketchat
-      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
-    depends_on:
-      - mongo
-    ports:
-      - 3000:3000
-
-  mongo:
-    image: mongo:5.0
-    restart: unless-stopped
-    volumes:
-     - ./data/rocketchat/db:/data/db
-    environment:
-       - MONGO_REPLICA_SET_NAME=rs0
-    command: "--bind_ip_all --replSet rs0"
+#  rocketchat:
+#    image: registry.rocket.chat/rocketchat/rocket.chat:latest
+#    command: >
+#      bash -c
+#        "for i in `seq 1 30`; do
+#          node main.js &&
+#          s=$$? && break || s=$$?;
+#          echo \"Tried $$i times. Waiting 5 secs...\";
+#          sleep 5;
+#        done; (exit $$s)"
+#    restart: unless-stopped
+#    volumes:
+#      - ./data/rocketchat/uploads:/app/uploads
+#    environment:
+#      - PORT=3000
+#      - ROOT_URL=http://localhost:3000
+#      - MONGO_URL=mongodb://mongo:27017/rocketchat
+#      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
+#    depends_on:
+#      - mongo
+#    ports:
+#      - 3000:3000
+#
+#  mongo:
+#    image: mongo:5.0
+#    restart: unless-stopped
+#    volumes:
+#     - ./data/rocketchat/db:/data/db
+#    environment:
+#       - MONGO_REPLICA_SET_NAME=rs0
+#    command: "--bind_ip_all --replSet rs0"
 
   # this container's job is just run the command to initialize the replica set.
   # it will run the command and remove himself (it will not stay running)
-  mongo-init-replica:
-    image: mongo:5.0
-    command: >
-      bash -c
-        "for i in `seq 1 30`; do
-          mongo mongo/rocketchat --eval \"
-            rs.initiate({
-              _id: 'rs0',
-              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
-          s=$$? && break || s=$$?;
-          echo \"Tried $$i times. Waiting 5 secs...\";
-          sleep 5;
-        done; (exit $$s)"
-    depends_on:
-      - mongo
+#  mongo-init-replica:
+#    image: mongo:5.0
+#    command: >
+#      bash -c
+#        "for i in `seq 1 30`; do
+#          mongo mongo/rocketchat --eval \"
+#            rs.initiate({
+#              _id: 'rs0',
+#              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
+#          s=$$? && break || s=$$?;
+#          echo \"Tried $$i times. Waiting 5 secs...\";
+#          sleep 5;
+#        done; (exit $$s)"
+#    depends_on:
+#      - mongo
 
   # hubot, the popular chatbot (add the bot user first and change the password before starting this image)
   hubot:
     image: rocketchat/hubot-rocketchat:latest
     restart: unless-stopped
     environment:
-      - ROCKETCHAT_URL=rocketchat:3000
-      - ROCKETCHAT_ROOM=GENERAL
-      - ROCKETCHAT_USER=bot
-      - ROCKETCHAT_PASSWORD=botpassword
+      #- ROCKETCHAT_URL=rocketchat:3000
+      #- ROCKETCHAT_ROOM=GENERAL
+      #- ROCKETCHAT_USER=bot
+      #- ROCKETCHAT_PASSWORD=botpassword
+      #- ROCKETCHAT_USESSL=false
+      - ROCKETCHAT_URL=${ROCKETCHAT_URL}
+      - ROCKETCHAT_ROOM=${ROCKETCHAT_ROOM}
+      - ROCKETCHAT_USER=${ROCKETCHAT_USER}
+      - ROCKETCHAT_PASSWORD=${ROCKETCHAT_PASSWORD}
+      - ROCKETCHAT_USESSL=true
       - BOT_NAME=bot
-  # you can add more scripts as you'd like here, they need to be installable by npm
+      # you can add more scripts as you'd like here, they need to be installable by npm
       - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics
-    depends_on:
-      - rocketchat
+    #depends_on:
+    #  - rocketchat
     volumes:
-      - ./data/hubot/scripts:/home/hubot/scripts
-  # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
+      - /home/sea/data/hubot/scripts:/home/hubot/scripts
+
+  # sql database for chuck norris jokes
+  chuckdb:
+    image: mariadb
+    restart: always
+    volumes:
+      - /home/sea/data/chuckdb/db:/var/lib/mysql
+      - /home/sea/data/chuckdb/init:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_USER=joker
+      - MYSQL_PASSWORD=jokingaround
+      - MYSQL_DATABASE=jokes
+
+  # spring boot application for chuck norris jokes
+  chuckjokeservice:
+    image: ${IMAGE_NAME}
+    restart: unless-stopped
+    environment:
+      - MYSQL_DB_HOST=chuckdb
+      - MYSQL_DB_PORT=3306
+      - MYSQL_DB=jokes
+      - MYSQL_DB_USERNAME=joker
+      - MYSQL_DB_PASSWORD=jokingaround
+    depends_on:
+      - chuckdb
     ports:
-      - 3001:8080
+      - 8080:8080
