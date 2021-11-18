@@ -9,14 +9,13 @@ import java.time.LocalDate;
 @Entity
 public class Joke {
 
-    // TODO: Team MDR und MAC informieren, dass Joke angepasst werden muss!
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String jokeText;
     private LocalDate creationDate;
 
+    // Constructors
     public Joke(){}
 
     public Joke(String jokeText, LocalDate creationDate) {
@@ -30,6 +29,8 @@ public class Joke {
         this.creationDate = creationDate;
     }
 
+
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -55,6 +56,7 @@ public class Joke {
     }
 
 
+    //Helpers and overidden methods
     @Override
     public String toString() {
         return "Joke{" +

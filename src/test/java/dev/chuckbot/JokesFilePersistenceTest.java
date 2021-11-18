@@ -117,6 +117,7 @@ class JokesFilePersistenceTest {
     }
 
     @Test
+    @Disabled
     void storeDataSmart_FilePersistence() {
         List<Joke> list = new ArrayList<>();
         list.add(new Joke("Eldor findet meinen Witz besonders fantasielos.", LocalDate.now()));

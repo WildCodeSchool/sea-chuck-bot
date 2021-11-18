@@ -8,6 +8,12 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
 
+
+
+@Deprecated
+// Deprecated by Team EMC @ 2021-11-18 with task#47
+// This was also just a class for testing purposes
+
 public class Main {
 
     public static void main(String[] args) throws ExecutionControl.NotImplementedException {
