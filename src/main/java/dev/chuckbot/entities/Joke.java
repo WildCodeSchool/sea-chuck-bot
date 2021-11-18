@@ -1,13 +1,23 @@
-package dev.chuckbot;
+package dev.chuckbot.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class Joke {
 
     // TODO: Team MDR und MAC informieren, dass Joke angepasst werden muss!
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String jokeText;
     private LocalDate creationDate;
+
+    public Joke(){}
 
     public Joke(String jokeText, LocalDate creationDate) {
         this.jokeText = jokeText;
@@ -22,6 +32,10 @@ public class Joke {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getJokeText() {

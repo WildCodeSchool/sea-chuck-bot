@@ -1,5 +1,7 @@
 package dev.chuckbot;
 
+import dev.chuckbot.entities.Joke;
+
 import java.util.List;
 
 public interface JokesPersistence {

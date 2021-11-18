@@ -1,11 +1,10 @@
 package dev.chuckbot.service;
 
-import dev.chuckbot.Joke;
 import dev.chuckbot.JokesPersistence;
+import dev.chuckbot.entities.Joke;
 import dev.chuckbot.util.ChuckPrint;
 import dev.chuckbot.util.CreationDateComparator;
 
-import java.io.File;
 import java.util.*;
 
 public class ChuckNorrisJokeService {

@@ -1,6 +1,6 @@
 package dev.chuckbot.util;
 
-import dev.chuckbot.Joke;
+import dev.chuckbot.entities.Joke;
 
 import java.time.LocalDate;
 import java.util.Comparator;

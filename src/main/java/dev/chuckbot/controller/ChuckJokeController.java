@@ -1,9 +1,8 @@
 package dev.chuckbot.controller;
 
 import dev.chuckbot.DBPersistence;
-import dev.chuckbot.Joke;
-import dev.chuckbot.JokesFilePersistence;
 import dev.chuckbot.JokesPersistence;
+import dev.chuckbot.entities.Joke;
 import dev.chuckbot.service.ChuckNorrisJokeService;
 import dev.chuckbot.util.CreationDateComparator;
 import dev.chuckbot.util.JokeTextComparator;
@@ -13,16 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+//@Controller
 public class ChuckJokeController {
 
     private ChuckNorrisJokeService jokeService;
