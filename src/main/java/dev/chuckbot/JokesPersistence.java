@@ -14,4 +14,6 @@ public interface JokesPersistence {
 
     void storeDataSmart(List<Joke> jokes);
 
+    void deleteJokeById(Long id);
+
 }

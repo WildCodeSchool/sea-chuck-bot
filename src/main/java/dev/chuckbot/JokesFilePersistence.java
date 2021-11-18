@@ -104,6 +104,10 @@ public class JokesFilePersistence implements JokesPersistence {
 
     }
 
+    @Override
+    public void deleteJokeById(Long id) {
+    }
+
     // Helpermethod to check, wether the string in file could be parsed to localdate or not, based on the specified dateformat
     private static boolean isParsableToLocaldate(String dateStr, DateTimeFormatter dateFormatter) {
         try {

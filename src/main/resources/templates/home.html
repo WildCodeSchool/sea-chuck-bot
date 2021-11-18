@@ -45,7 +45,7 @@
         <button type="submit" th:name="sort" th:value="date">Sort by date</button>
        </div>
     </form>
-    <form th:action="@{/addNewJokeForm}">
+    <form th:action="@{/showNewJokes}">
         <div>
         <button type="submit" value="Add new joke">Add new joke</button>
         </div>
@@ -63,8 +63,10 @@
         <td colspan="2"> No Jokes Available </td>
     </tr>
     <tr th:each="joke : ${jokes}">
+        <td><span th:text="${joke.id}"> Id </span></td>
         <td><span th:text="${joke.jokeText}"> Joke </span></td>
         <td><span th:text="${joke.creationDate}"> Date </span></td>
+        <td><a th:href="@{/deleteById(idJoke=${joke.id})}">remove</a></td>
     </tr>
     </tbody>
 </table>

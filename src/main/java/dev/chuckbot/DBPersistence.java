@@ -57,26 +57,39 @@ public class DBPersistence implements JokesPersistence {
     public void storeDataSmart(List<Joke> jokes) {
 
 
-        for(Joke j: jokes){
-            try(PreparedStatement ps = conn.prepareStatement("Select * from JOKES where JOKETEXT=?")){
+        for (Joke j : jokes) {
+            try (PreparedStatement ps = conn.prepareStatement("Select * from JOKES where JOKETEXT=?")) {
                 ps.setString(1, j.getJokeText());
                 ResultSet rs = ps.executeQuery();
 
-                if(!rs.next()){
-                    try(PreparedStatement psInsert = conn.prepareStatement("Insert into JOKES (JOKETEXT, ADDED) Values (?,?)")){
+                if (!rs.next()) {
+                    try (PreparedStatement psInsert = conn.prepareStatement("Insert into JOKES (JOKETEXT, ADDED) Values (?,?)")) {
                         psInsert.setString(1, j.getJokeText());
                         psInsert.setDate(2, Date.valueOf(j.getCreationDate()));
                         psInsert.execute();
                         System.out.println("Eintrag added.");
-                    }catch(SQLException e){
+                    } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                }else{
+                } else {
                     System.out.println("Eintrag mit ID " + j.getId() + " bereits vorhanden.");
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void deleteJokeById(Long id) {
+
+        try (PreparedStatement ps = conn.prepareStatement("DELETE FROM JOKES WHERE id=?")) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

@@ -47,6 +47,11 @@ public class ChuckNorrisJokeService {
         jokeList.add(joke);
     }
 
+    public void deleteJoke(Long id) {
+        // Joke löschen
+        persistence.deleteJokeById(id);
+    }
+
     public void shutdown() {
         //Team RiBe liefert Methode, der wir eine Liste übergeben können. Inhalt der Liste wird in txt-Datei geschrieben.
         persistence.storeData(jokeList);
