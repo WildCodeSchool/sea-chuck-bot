@@ -1,6 +1,6 @@
 package dev.chuckbot.util;
 
-import dev.chuckbot.Joke;
+import dev.chuckbot.entities.Joke;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

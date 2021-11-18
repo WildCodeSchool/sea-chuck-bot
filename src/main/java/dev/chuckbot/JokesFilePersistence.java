@@ -1,5 +1,7 @@
 package dev.chuckbot;
 
+import dev.chuckbot.entities.Joke;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;

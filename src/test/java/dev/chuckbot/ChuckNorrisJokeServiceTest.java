@@ -1,5 +1,6 @@
 package dev.chuckbot;
 
+import dev.chuckbot.entities.Joke;
 import dev.chuckbot.service.ChuckNorrisJokeService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

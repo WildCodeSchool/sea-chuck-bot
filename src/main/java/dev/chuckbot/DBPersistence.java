@@ -1,5 +1,7 @@
 package dev.chuckbot;
 
+import dev.chuckbot.entities.Joke;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
