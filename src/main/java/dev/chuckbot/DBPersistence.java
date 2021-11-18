@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
+// Deprecated by Team EMC @ 2021-11-18 with task#47
 public class DBPersistence implements JokesPersistence {
 
     private final Connection conn;
@@ -15,6 +17,7 @@ public class DBPersistence implements JokesPersistence {
         this.conn = conn;
     }
 
+    @Deprecated
     @Override
     public List<Joke> loadData() {
 
@@ -30,6 +33,7 @@ public class DBPersistence implements JokesPersistence {
         return dbListJokes;
     }
 
+    @Deprecated
     @Override
     public void storeData(List<Joke> jokes) {
 
@@ -55,6 +59,7 @@ public class DBPersistence implements JokesPersistence {
 
     }
 
+    @Deprecated
     @Override
     public void storeDataSmart(List<Joke> jokes) {
 
@@ -80,5 +85,17 @@ public class DBPersistence implements JokesPersistence {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Deprecated
+    public void deleteByID(int id){
+
+        try(PreparedStatement ps = conn.prepareStatement("delete from JOKES where id=?")){
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
     }
 }

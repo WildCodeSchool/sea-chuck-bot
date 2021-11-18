@@ -2,19 +2,14 @@ package dev.chuckbot.service;
 
 import dev.chuckbot.JokesPersistence;
 import dev.chuckbot.entities.Joke;
-import dev.chuckbot.repository.JokesRepository;
 import dev.chuckbot.util.ChuckPrint;
 import dev.chuckbot.util.CreationDateComparator;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
 public class ChuckNorrisJokeService {
 
     private final JokesPersistence persistence;
-
-    @Autowired
-    private JokesRepository repository;
 
     public ChuckNorrisJokeService(JokesPersistence persistence) {
         this.persistence = persistence;
@@ -57,5 +52,7 @@ public class ChuckNorrisJokeService {
     }
 
 
-
+    public void deleteByID(int id){
+        persistence.deleteByID(id);
+    }
 }

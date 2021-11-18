@@ -4,8 +4,11 @@ import dev.chuckbot.entities.Joke;
 
 import java.util.List;
 
+@Deprecated
+// Deprecated by Team EMC @ 2021-11-18 with task#47
 public interface JokesPersistence {
 
+    @Deprecated
     List<Joke> loadData();
 
     @Deprecated
@@ -14,6 +17,10 @@ public interface JokesPersistence {
      */
     void storeData(List<Joke> jokes);
 
+    @Deprecated
     void storeDataSmart(List<Joke> jokes);
+
+    @Deprecated
+    void deleteByID(int id);
 
 }

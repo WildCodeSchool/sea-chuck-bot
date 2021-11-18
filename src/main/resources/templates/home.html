@@ -40,22 +40,24 @@
 <body>
 <div class="button-container">
     <form th:action="@{/alljokes(sort=${action})}">
-       <div>
-        <button type="submit" th:name="sort" th:value="alphabetically">Sort alphabetically</button>
-        <button type="submit" th:name="sort" th:value="date">Sort by date</button>
-       </div>
+        <div>
+            <button type="submit" th:name="sort" th:value="alphabetically">Sort alphabetically</button>
+            <button type="submit" th:name="sort" th:value="date">Sort by date</button>
+        </div>
     </form>
     <form th:action="@{/addNewJokeForm}">
         <div>
-        <button type="submit" value="Add new joke">Add new joke</button>
+            <button type="submit" value="Add new joke">Add new joke</button>
         </div>
     </form>
 </div>
 <table>
     <thead>
     <tr>
-        <th> Joke </th>
-        <th> Date </th>
+        <th> Joke-Id </th>
+        <th> Chuck Norris-Joke </th>
+        <th> Remove joke </th>
+        <th> Date of creation</th>
     </tr>
     </thead>
     <tbody>
@@ -63,7 +65,9 @@
         <td colspan="2"> No Jokes Available </td>
     </tr>
     <tr th:each="joke : ${jokes}">
+        <td><span th:text="${joke.id}"> ID </span></td>
         <td><span th:text="${joke.jokeText}"> Joke </span></td>
+        <td><a th:href="@{/delete(id=${joke.id})}">Remove</a></td>
         <td><span th:text="${joke.creationDate}"> Date </span></td>
     </tr>
     </tbody>
