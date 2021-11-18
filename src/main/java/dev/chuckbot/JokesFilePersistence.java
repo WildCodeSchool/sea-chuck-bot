@@ -16,6 +16,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
+// Deprecated by Team EMC @ 2021-11-18 with task#47
 public class JokesFilePersistence implements JokesPersistence {
 
     private final File storage;
@@ -25,6 +27,7 @@ public class JokesFilePersistence implements JokesPersistence {
         this.storage = storage;
     }
 
+    @Deprecated
     @Override
     public List<Joke> loadData() {
 
@@ -85,6 +88,7 @@ public class JokesFilePersistence implements JokesPersistence {
         }
     }
 
+    @Deprecated
     @Override
     public void storeData(List<Joke> jokes) {
         // Write the list to a file, whereby the file is always regenerated
@@ -114,5 +118,11 @@ public class JokesFilePersistence implements JokesPersistence {
             return false;
         }
         return true;
+    }
+
+    @Deprecated
+    @Override
+    public void deleteByID(int id) {
+
     }
 }

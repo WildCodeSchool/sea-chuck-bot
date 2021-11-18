@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated
+// Deprecated by Team EMC @ 2021-11-18 with task#47
 //@Controller
 public class ChuckJokeController {
 
