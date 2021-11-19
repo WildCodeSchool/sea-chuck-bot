@@ -1,4 +1,5 @@
 # Default ignored files
+.DS_Store
 /target/
 /.idea/
 /workspace.xml
@@ -7,3 +8,6 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+/data/rocketchat/
+/data/jokedb/
+/data/chuckdb/db/

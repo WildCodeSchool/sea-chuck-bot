@@ -1,10 +1,7 @@
 package dev.chuckbot.util;
 
-
-import dev.chuckbot.Joke;
-
+import dev.chuckbot.entities.Joke;
 import java.util.List;
-import java.util.Set;
 
 public class ChuckPrint {
     public static void printAllJokes(List<Joke> allJokes) {

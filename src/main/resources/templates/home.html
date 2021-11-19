@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+     table{
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+    td, th{
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2;}
+    tr:hover {background-color: #ddd;}
+
+     th {
+        background-color: #e20074;
+        color:white;
+     }
+
+     .button-container form,
+     .button-container form div {
+      display: inline;
+     }
+
+     .button-container button {
+      display: inline;
+      vertical-align: middle;
+      }
+
+    </style>
+
+</head>
+<body>
+<div class="button-container">
+    <form th:action="@{/alljokes(sort=${action})}">
+        <div>
+            <button type="submit" th:name="sort" th:value="alphabetically">Sort alphabetically</button>
+            <button type="submit" th:name="sort" th:value="date">Sort by date</button>
+        </div>
+    </form>
+    <form th:action="@{/addNewJokeForm}">
+        <div>
+            <button type="submit" value="Add new joke">Add new joke</button>
+        </div>
+    </form>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th> Joke-Id </th>
+        <th> Chuck Norris-Joke </th>
+        <th> Remove joke </th>
+        <th> Date of creation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${jokes.empty}">
+        <td colspan="2"> No Jokes Available </td>
+    </tr>
+    <tr th:each="joke : ${jokes}">
+        <td><span th:text="${joke.id}"> ID </span></td>
+        <td><span th:text="${joke.jokeText}"> Joke </span></td>
+        <td><a th:href="@{/delete(id=${joke.id})}">Remove</a></td>
+        <td><span th:text="${joke.creationDate}"> Date </span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

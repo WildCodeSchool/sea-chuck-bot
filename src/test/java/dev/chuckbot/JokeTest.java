@@ -1,5 +1,6 @@
 package dev.chuckbot;
 
+import dev.chuckbot.entities.Joke;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

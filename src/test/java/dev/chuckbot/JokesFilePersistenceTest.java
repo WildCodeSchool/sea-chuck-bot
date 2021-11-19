@@ -1,5 +1,6 @@
 package dev.chuckbot;
 
+import dev.chuckbot.entities.Joke;
 import org.junit.jupiter.api.*;
 import java.io.File;
 import java.time.LocalDate;
@@ -114,6 +115,22 @@ class JokesFilePersistenceTest {
 
         assertEquals(1, persistence.loadData().size());
     }
+
+    @Test
+    @Disabled
+    void storeDataSmart_FilePersistence() {
+        List<Joke> list = new ArrayList<>();
+        list.add(new Joke("Eldor findet meinen Witz besonders fantasielos.", LocalDate.now()));
+        JokesPersistence pers = new JokesFilePersistence(new File("src/test/resources/RiBejokes.txt"));
+
+        Exception e = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+            pers.storeDataSmart(list);
+        });
+
+        assertEquals(e.getMessage(), "Methode nicht implementiert");
+    }
+
+
 
     @AfterAll
     public static void cleanUp() {
