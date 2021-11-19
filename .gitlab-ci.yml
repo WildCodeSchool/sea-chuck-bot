@@ -31,7 +31,6 @@ build-job:       # This job runs in the build stage, which runs first.
   tags:
     - sea-runner
   only:
-    - infra
     - development
 
 push-image:   # This job runs in the test stage.
@@ -42,7 +41,6 @@ push-image:   # This job runs in the test stage.
   tags:
     - sea-runner
   only:
-    - infra
     - development
 
 deploy-job:      # This job runs in the deploy stage.
@@ -56,5 +54,4 @@ deploy-job:      # This job runs in the deploy stage.
   tags:
     - sea-runner
   only:
-    - infra
     - development
