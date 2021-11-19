@@ -1,7 +1,11 @@
 # Chuck Bot
 The Chuck Bot should be able to read messages in a specific RocketChat Channel and react to the command **#whataboutchuck** with a fact about Chuck Norris life, like **Chuck Norris counted to infinity... twice**.
 
+## System Context
+
 ![](docs/img/SEA_ChuckBot_CommDiag.png)
+
+## Deployment Diagram
 
 ![](docs/img/SEA_ChuckBot_CommDiag2.png)
 
