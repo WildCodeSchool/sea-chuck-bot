@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -24,6 +25,8 @@ public class JokeController {
         this.service = service;
     }
 
+    private int sortCount = 0;
+
     //CRUD
 
     // Index- and Landing-Page
@@ -32,15 +35,28 @@ public class JokeController {
     public String displayIndex(Model model, @RequestParam(required = false, defaultValue = "") String sort) {
         List<Joke> jokeList = service.getAllJokes();
 
+        // Sort the jokelist ascendind or descending by creation date or joketext
         if (sort.equals("date")) {
-            Collections.sort(jokeList, new CreationDateComparator().reversed());
+            if (sortCount % 2 == 0) {
+                jokeList.sort((Comparator.comparing(Joke::getCreationDate).reversed()));
+            } else {
+                jokeList.sort((Comparator.comparing(Joke::getCreationDate)));
+            }
             model.addAttribute("jokes", jokeList);
+            sortCount++;
         } else if (sort.equals("alphabetically")) {
-            Collections.sort(jokeList, new JokeTextComparator());
+            if (sortCount % 2 == 0) {
+                jokeList.sort((Comparator.comparing(Joke::getJokeText).reversed()));
+            }
+            else{
+                jokeList.sort((Comparator.comparing(Joke::getJokeText)));
+            }
             model.addAttribute("jokes", jokeList);
+            sortCount++;
         } else {
             model.addAttribute("jokes", jokeList);
         }
+
 
         return "/home";
     }
@@ -48,7 +64,7 @@ public class JokeController {
     // GET: Add new jokes (dialogue)
     // Methods returns the form to add new jokes
     @GetMapping("/addNewJokeForm")
-    public String addNewJoke(Model model){
+    public String addNewJoke(Model model) {
 
         return "addNewJokeForm";
 
