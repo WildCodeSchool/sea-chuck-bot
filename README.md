@@ -9,10 +9,6 @@ The Chuck Bot should be able to read messages in a specific RocketChat Channel a
 
 ![](docs/img/SEA_ChuckBot_CommDiag2.png)
 
-## Persistence Architecture
-
-![](docs/img/SEA_ChuckBot_Architecture.png)
-
 ### Setup
 
 #### Prerequisites
@@ -86,13 +82,18 @@ In the last iteration the administration should be extended to a secure role-bas
 * Extend Spring Boot MVC application with Spring Security.
 * Understand RBAC for web applications.
 
+### Persistence Architecture (Plain JDBC & File Version)
+
+![](docs/img/SEA_ChuckBot_Architecture.png)
+
 ## Chuck Bot API
 
 ### Read all messages from channel (async, cron)
+
 ### Push joke to channel
+
 ### List all jokes
-### (CRUD API)
-#### Display joke
-#### Add joke
-#### (Modify joke)
-#### Delete joke
+
+### REST CRUD API
+
+#### Display random joke
