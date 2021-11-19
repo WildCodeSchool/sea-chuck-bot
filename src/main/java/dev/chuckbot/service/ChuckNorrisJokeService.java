@@ -38,7 +38,8 @@ public class ChuckNorrisJokeService {
         return jokeList.get(jokeList.size()-1);
     }
 
-    public List getAllJokes(){
+    public List<Joke> getAllJokes(){
+        jokeList = persistence.loadData();
         return jokeList;
     }
 

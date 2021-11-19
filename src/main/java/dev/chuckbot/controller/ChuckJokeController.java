@@ -86,7 +86,7 @@ public class ChuckJokeController {
     public String deleteJoke(@RequestParam Long idJoke) {
 
         jokeService.deleteJoke(idJoke);
-        jokeService.shutdown();
+        // jokeService.shutdown();
 
         return "redirect:/alljokes";
     }
