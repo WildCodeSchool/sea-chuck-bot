@@ -42,6 +42,7 @@ class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/addNewJoke").hasAuthority("ADMIN")
                 .mvcMatchers("/delete").hasAuthority("ADMIN")
                 //.mvcMatchers("/api/jokes/random").hasAnyAuthority("USER","ADMIN")
+                .mvcMatchers("/api/jokes/random").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 //specify that authentication should done through a login form
