@@ -32,7 +32,6 @@ build-job:       # This job runs in the build stage, which runs first.
     - sea-runner
   only:
     - development
-    - task-59
 
 push-image:   # This job runs in the test stage.
   stage: push    # It only starts when the job in the build stage completes successfully.
@@ -57,4 +56,3 @@ deploy-job:      # This job runs in the deploy stage.
     - sea-runner
   only:
     - development
-    - task-59
