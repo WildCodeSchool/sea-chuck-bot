@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>NewJokeForm</title>>
+    <title>NewJokeForm</title>
     <link rel="stylesheet" href="/css/addNewJokeFormStyle.css">
 </head>
 
 <body>
+<video src="/css/chucknorris.mp4" autoplay playsinline muted>
+</video>
 <div id="form">
     <form method="post" th:action="@{/addNewJoke}">
-        <label for="jokeText">Add your joke</label><br><br>
         <input type="text" id="jokeText" name="jokeText" placeholder="Add your joke here ..."><br><br>
         <input type="submit" value="Submit">
     </form>

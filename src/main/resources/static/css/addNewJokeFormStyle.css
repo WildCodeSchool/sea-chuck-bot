@@ -1,108 +1,86 @@
-/* Stylesheet für NewJokeForm */
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
-body{
-    background: url(https://images01.military.com/sites/default/files/styles/full/public/2021-04/chucknorris.jpeg.jpg?itok=2b4A6n29);
-    /*
-    background: url(https://4.bp.blogspot.com/-ts5fY5I42_E/UznmkwPjkLI/AAAAAAAAY8A/uri3AkoFH6I/s1600/Chuck.jpg);
-    background: url(https://beardoholic.com/wp-content/uploads/2017/12/c74461ae2a9917a2482ac7b53f195b3c6e2fdd59e778c673256fb29d1b07f181.jpg);
-    background: url(https://static3.srcdn.com/wordpress/wp-content/uploads/2020/04/Chuck-Norris-featured-Image.jpg?q=50&fit=crop&w=960&h=500&dpr=1.5);
-    */
-    background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+  div{
+    height: 25%;
+    width: 25%;
+    position: fixed;
+    background: transparent;
+    /*border: rgba(233, 222, 77, 0.2);
+    border-radius: 5px;
+    border: 10px;*/
+    margin-top: 10%;
+    margin-left: 5%;
 }
-
-div{
-height: 25%;
-width: 25%;
-}
-
+  
+  
 label{
-    background-color: #e7e7e7;
-    color: black;
-    padding: 8px;
-    font-family: Arial;
+      background-color: #e7e7e7;
+      color: black;
+      padding: 8px;
+      font-family: Arial;
     }
-
+  
+input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+  
+input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+  
+      
     input[type=text], select {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
+            display: inline-block;
+            width: auto;
+          overflow: hidden;
+          padding: 12px 20px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: content-box;
+        }
+        
     input[type=submit] {
-      width: 100%;
-      background-color: #4CAF50;
-      color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-/*
-header{
-    background-image: url(https://www.domradio.de/sites/default/files/styles/domradio-title/public/stern-von-chuck-norris-auf-dem-walk-fame-hollywood_0.jpg?itok=Zbte8FhJ);
-    background-size: cover;
-    padding: 2%;
-}
-
-h1{
-    text-align: center;
-    margin-bottom: 4%;
-    margin-right: 5%;
-}
-
-.button-container form,
-.button-container form div {
-    display: inline;
-}
-
-button:hover {
-    background-color: #a09999;
-}
-
-main {}
-
-table{
-    background: url(https://4.bp.blogspot.com/-ts5fY5I42_E/UznmkwPjkLI/AAAAAAAAY8A/uri3AkoFH6I/s1600/Chuck.jpg);
-    background: url(https://images01.military.com/sites/default/files/styles/full/public/2021-04/chucknorris.jpeg.jpg?itok=2b4A6n29);
-    background: url(https://beardoholic.com/wp-content/uploads/2017/12/c74461ae2a9917a2482ac7b53f195b3c6e2fdd59e778c673256fb29d1b07f181.jpg);
-    background: url(https://static3.srcdn.com/wordpress/wp-content/uploads/2020/04/Chuck-Norris-featured-Image.jpg?q=50&fit=crop&w=960&h=500&dpr=1.5);
-
-    background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    border: 5px solid rgba(233, 222, 77, 0.2);
-    background-color: #bb7492;
-    color:#ddd;
-    padding: 5px;
-}
-
-tr td {
-    border: 5px solid rgba(233, 222, 77, 0.2);
-    padding: 5px;
-}
-
-tr:hover td {
-    background-color: rgba(233, 222, 77, 0.2);
-}
-
-tr:nth-child(even) td {
-    border: 5px solid rgba(206, 198, 91, 0.2);
-    padding: 5px;
-}
-*/
-
-
-
+          width: 50%;
+          background-color: #bb7492;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    a {
+            display: inline-block;
+            vertical-align: middle;
+            text-decoration: none;
+            color: #000000;
+            background-color: rgba(182, 165, 165, 0.5);
+            margin-top: 4%;
+            margin-left: 2%;
+            width: 150px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+  
+  
