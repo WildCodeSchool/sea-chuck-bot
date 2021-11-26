@@ -79,7 +79,7 @@ tr td {
 }
 
 tr:hover td {
-    background-color: rgba(233, 222, 77, 0.2);
+    background-color: rgba(233, 222, 77, 0.5);
 }
 
 /*tr:nth-child(even) td {
