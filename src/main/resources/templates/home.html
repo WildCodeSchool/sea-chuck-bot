@@ -1,44 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/css/homestyle.css" />
+    <title>Facts about Chuck</title>
+    <link rel="stylesheet" href="/css/homestyle.css">
 </head>
+
 <body>
-<div class="button-container">
-    <form th:action="@{/alljokes(sort=${action})}">
-        <div>
-            <button type="submit" th:name="sort" th:value="alphabetically">Sort alphabetically</button>
-            <button type="submit" th:name="sort" th:value="date">Sort by date</button>
-        </div>
-    </form>
-    <form th:action="@{/addNewJokeForm}">
-        <div>
-            <button type="submit" value="Add new joke">Add new joke</button>
-        </div>
-    </form>
-</div>
-<table>
-    <thead>
-    <tr>
-        <th> Joke-Id </th>
-        <th> Chuck Norris-Joke </th>
-        <th> Remove joke </th>
-        <th> Date of creation</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${jokes.empty}">
-        <td colspan="2"> No Jokes Available </td>
-    </tr>
-    <tr th:each="joke : ${jokes}">
-        <td><span th:text="${joke.id}"> ID </span></td>
-        <td><span th:text="${joke.jokeText}"> Joke </span></td>
-        <td><a th:href="@{/delete(id=${joke.id})}">Remove</a></td>
-        <td><span th:text="${joke.creationDate}"> Date </span></td>
-    </tr>
-    </tbody>
-</table>
+<header>
+    <h1>Facts about</h1>
+
+    <div class="button-container">
+        <!--<form>
+            <div>
+                <button type="submit" th:name="sort" th:value="alphabetically">Sort alphabetically</button>
+                <button type="submit" th:name="sort" th:value="date">Sort by date</button>
+            </div>
+        </form>-->
+        <form th:action="@{/addNewJokeForm}">
+            <div>
+                <button type="submit" value="Add new joke">Add new joke</button>
+            </div>
+        </form>
+    </div>
+</header>
+
+<main>
+    <table>
+        <form th:action="@{/alljokes(sort=${action})}">
+            <thead>
+                <th>
+                    <button type="submit" th:name="sort" th:value="alphabetically">Chuck Norris-Joke</button>
+                </th>
+                <th>
+                    <button type="submit" th:name="sort" th:value="date"> Date</button>
+                </th>
+                <th>
+                    <label> Remove</label>
+                </th>
+            </thead>
+        </form>
+        <tbody>
+        <tr th:if="${jokes.empty}">
+            <td colspan="2"> There are NO Jokes about Chuck Norris !</td>
+        </tr>
+        <tr th:each="joke : ${jokes}">
+            <td><span th:text="${joke.jokeText}"> Joke </span></td>
+            <td><span th:text="${joke.creationDate}"> Date </span></td>
+            <td><a th:href="@{/delete(id=${joke.id})}">Remove</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+</footer>
+<script src="skript.js"></script>
 </body>
 </html>
