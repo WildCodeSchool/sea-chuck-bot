@@ -2,6 +2,7 @@ package dev.chuckbot.config;
 
 import dev.chuckbot.service.AuthenticatedUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
@@ -20,14 +21,27 @@ class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /*@Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+     */
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //block specifies that access on each request has to be authenticated:
         http.authorizeRequests()
-                .mvcMatchers("/","/alljokes","/addNewJokeForm","/addNewJoke", "/delete", "/api/jokes/random")
-                    .hasRole("ADMIN")
-                .mvcMatchers("/","/alljokes","/api/jokes/random")
-                    .hasRole("USER")
+                .mvcMatchers("/").hasAnyAuthority("USER", "ADMIN")
+                .mvcMatchers("/alljokes").hasAnyAuthority("USER", "ADMIN")
+                .mvcMatchers("/addNewJokeForm").hasAuthority("ADMIN")
+                .mvcMatchers("/addNewJoke").hasAuthority("ADMIN")
+                .mvcMatchers("/delete").hasAuthority("ADMIN")
+                .mvcMatchers("/api/jokes/random").hasAnyAuthority("USERS","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 //specify that authentication should done through a login form

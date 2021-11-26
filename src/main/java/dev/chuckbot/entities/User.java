@@ -1,9 +1,6 @@
 package dev.chuckbot.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
@@ -11,7 +8,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "username is required")
@@ -21,13 +18,16 @@ public class User {
     @NotEmpty(message = "password is required")
     private String password;
 
-    private List<String> role;
+    @NotEmpty(message = "role is required")
+    private String role;
+
+
 
 
 
     protected User() {}
 
-    public User(String username, String password, List<String> role) {
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -49,11 +49,11 @@ public class User {
         this.password = password;
     }
 
-    public List<String> getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(List<String> role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }
