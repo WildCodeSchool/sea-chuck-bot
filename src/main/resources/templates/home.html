@@ -10,7 +10,10 @@
 <body>
 <header>
     <h1>Facts about</h1>
-        <button type="submit" value="logout">Logout</button>
+    <form action="/logout">
+        <button type="submit">Logout</button>
+    </form>
+
         <form th:action="@{/addNewJokeForm}">
             <div>
                 <button type="submit" value="Add new joke">Add new joke</button>
