@@ -4,39 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Facts about Chuck</title>
-    <link rel="stylesheet" href="/css/homestyle.css">
+    <link rel="stylesheet" href="css/homestyle.css">
 </head>
 
 <body>
 <header>
+    <form action="/logout">
+        <button id="logout" type="submit">Logout</button>
+    </form>
+
     <h1>Facts about</h1>
-        <button type="submit" value="logout">Logout</button>
-        <form th:action="@{/addNewJokeForm}">
-            <div>
-                <button type="submit" value="Add new joke">Add new joke</button>
-            </div>
-        </form>
-    </div>
+
+    <form th:action="@{/addNewJokeForm}">
+        <button id="new" type="submit" value="Add new joke">Add new joke</button>
+    </form>
+
 </header>
 
 <main>
     <table>
         <form th:action="@{/alljokes(sort=${action})}">
-            <thead>
-                <th>
-                    <button type="submit" th:name="sort" th:value="alphabetically">Chuck Norris-Joke</button>
-                </th>
-                <th>
-                    <button type="submit" th:name="sort" th:value="date"> Date</button>
-                </th>
-                <th>
-                    <label> Remove</label>
-                </th>
-            </thead>
+            <th>
+                <button id="sortText" type="submit" th:name="sort" th:value="alphabetically">Chuck Norris-Joke</button>
+            </th>
+            <th>
+                <button id="sortDate" type="submit" th:name="sort" th:value="date">Date</button>
+            </th>
+            <th>
+                <label>Remove</label>
+            </th>
         </form>
         <tbody>
         <tr th:if="${jokes.empty}">
-            <td colspan="2"> There are NO Jokes about Chuck Norris !</td>
+            <td colspan="3"> There are NO Jokes about Chuck Norris !</td>
         </tr>
         <tr th:each="joke : ${jokes}">
             <td><span th:text="${joke.jokeText}"> Joke </span></td>
@@ -49,6 +49,6 @@
 
 <footer>
 </footer>
-<script src="skript.js"></script>
+
 </body>
 </html>
