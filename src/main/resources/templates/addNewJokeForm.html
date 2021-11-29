@@ -4,18 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>NewJokeForm</title>
-    <link rel="stylesheet" href="/css/addNewJokeFormStyle.css">
+    <link rel="stylesheet" href="css/addNewJokeFormStyle.css">
+    <script src="js/addNewJokeFormScript.js"></script>
 </head>
 
 <body>
-<video src="/css/chucknorris.mp4" autoplay playsinline muted>
-</video>
+
+<video src="css/chucknorris.mp4" autoplay playsinline muted></video>
+
 <div id="form">
-    <form method="post" th:action="@{/addNewJoke}">
-        <input type="text" id="jokeText" name="jokeText" placeholder="Add your joke here ..."><br><br>
-        <input type="submit" value="Submit">
+
+    <a id="warning" href="https://www.der-postillon.com/2013/02/chuck-norris-droht-internet-zu.html#:~:text=Chuck%20Norris%20droht%2C-,Internet,-zu%20zerst%C3%B6ren%2C%20falls"
+       target="popup"
+       onclick="window.open('https://www.der-postillon.com/2013/02/chuck-norris-droht-internet-zu.html#:~:text=Chuck%20Norris%20droht%2C-,Internet,-zu%20zerst%C3%B6ren%2C%20falls','popup','width=600,height=700'); return false;">
+        Please read carefully this warning and confirm before adding your joke &nbsp&nbsp !</a>
+
+    <a id="return" href="/alljokes">I don't dare !</a>
+
+    <form id="readWarning">
+        <label for="readWarning">I understand and confirm</label>
+        <input id="check" type="checkbox" onclick="yesVisibility()" name="readWarning" value="read">
     </form>
-    <a href="/alljokes">Return to the list</a>
+
+    <form name="adJoke" method="post" th:action="@{/addNewJoke}" onsubmit="return validateJoke()">
+        <textarea id="jokeText" type="text" rows="2" name="jokeText" placeholder="Add your joke here if you dare ... !!!"></textarea>
+        <input id="yes"  type="submit" value="I'm perfectly willing to run that risk"/>
+    </form>
+
 </div>
 </body>
 </html>
