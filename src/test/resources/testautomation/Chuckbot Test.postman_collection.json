@@ -12,10 +12,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
-							"pm.test(\"Your test name\", function () {",
+							"pm.test(\"Check JSON response and store ID of random joke\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.id).exist",
 							"    pm.expect(jsonData.jokeText).exist",
@@ -80,10 +80,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
-							"pm.test(\"Your test name\", function () {",
+							"pm.test(\"Check JSON response\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.id).exist",
 							"    pm.expect(jsonData.jokeText).exist",
@@ -145,11 +145,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"alljokes\");",
+							"    pm.expect(pm.response.text()).to.include(\"/alljokes?sort\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -193,11 +193,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"alljokes\");",
+							"    pm.expect(pm.response.text()).to.include(\"/alljokes?sort\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -241,11 +241,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"alljokes\");",
+							"    pm.expect(pm.response.text()).to.include(\"/alljokes?sort\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -289,11 +289,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"alljokes\");",
+							"    pm.expect(pm.response.text()).to.include(\"/alljokes?sort\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -346,7 +346,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (Forbidden)\", function () {",
 							"    pm.response.to.have.status(\"Forbidden\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
@@ -394,7 +394,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
@@ -442,7 +442,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (Forbidden)\", function () {",
 							"    pm.response.to.have.status(\"Forbidden\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
@@ -503,13 +503,13 @@
 			"response": []
 		},
 		{
-			"name": "Remove joke with admin",
+			"name": "AddNewJokeForm with admin Copy",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check Response Status\", function () {",
+							"pm.test(\"Check Response Status (OK)\", function () {",
 							"    pm.response.to.have.status(\"OK\");",
 							"});",
 							"pm.test(\"Body is correct\", function () {",
@@ -597,19 +597,19 @@
 		},
 		{
 			"key": "adminUser_01",
-			"value": "Marco"
+			"value": "admin"
 		},
 		{
 			"key": "adminPassword_01",
-			"value": "password"
+			"value": "admin"
 		},
 		{
 			"key": "userUser_01",
-			"value": "Christiane"
+			"value": "user"
 		},
 		{
 			"key": "userPassword_01",
-			"value": "password"
+			"value": "user"
 		},
 		{
 			"key": "base_url",

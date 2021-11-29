@@ -1,5 +1,4 @@
 INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris frankiert Briefe mit seinem Passfoto.', NOW());
-INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris frankiert Briefe mit seinem Passfoto.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Es gibt feindliche Aliens. Sie warten nur bis Chuck Norris gestorben ist, um angreifen zu können.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Heute weiß man, warum ich das Universum ausdehnt. Alles versucht, sich so weit wie möglich von Chuck Norris zu entfernen.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Wenn Monster schlafen gehen, schauen sie vorher, ob Chuck Norris unterm Bett ist.', NOW());
@@ -102,7 +101,6 @@ INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris hat recht, es 
 INSERT INTO joke (joke_text, creation_date) VALUES ('Das Tote Meer hieß ursprünglich Lebenssee – bis Chuck Norris darin baden ging.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris wurde mal auf Latein beleidigt – seitdem gilt es als tote Sprache.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris geht nicht jagen, denn das beinhaltet potentielles Versagen. Chuck Norris geht töten.', NOW());
-INSERT INTO joke (joke_text, creation_date) VALUES ('Jesus, ein Priester und Chuck Norris saßen in einem Boot auf dem Ozean.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris kann in einer Moschee das Halleluja anstimmen – und jeder singt mit.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('In einem normalen, durchschnittlich bestückten Wohnzimmer gibt es 1442 Dinge, die Chuck Norris benutzen kann, um dich zu töten. Den Raum selbst eingeschlossen.', NOW());
 INSERT INTO joke (joke_text, creation_date) VALUES ('Chuck Norris ist gestern gestorben. Heute geht es ihm schon wieder besser.', NOW());
