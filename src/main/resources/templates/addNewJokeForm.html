@@ -1,46 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<style>
-
-label{
-background-color: #e7e7e7;
-color: black;
-padding: 8px;
-font-family: Arial;
-}
-
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-</style>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>NewJokeForm</title>
+    <link rel="stylesheet" href="css/addNewJokeFormStyle.css">
+    <script src="js/addNewJokeFormScript.js"></script>
 </head>
+
 <body>
-<form method="post" th:action="@{/addNewJoke}">
-    <label for="jokeText">Add your joke</label><br><br>
-    <input type="text" id="jokeText" name="jokeText" placeholder="Your joke.."><br><br>
-    <input type="submit" value="Submit">
-</form>
-<a href="/alljokes">Return to the list</a>
+
+<video src="css/chucknorris.mp4" autoplay playsinline muted></video>
+
+<div id="form">
+
+    <a id="warning" href="https://www.der-postillon.com/2013/02/chuck-norris-droht-internet-zu.html#:~:text=Chuck%20Norris%20droht%2C-,Internet,-zu%20zerst%C3%B6ren%2C%20falls"
+       target="popup"
+       onclick="window.open('https://www.der-postillon.com/2013/02/chuck-norris-droht-internet-zu.html#:~:text=Chuck%20Norris%20droht%2C-,Internet,-zu%20zerst%C3%B6ren%2C%20falls','popup','width=600,height=700'); return false;">
+        Please read carefully this warning and confirm before adding your joke &nbsp&nbsp !</a>
+
+    <a id="return" href="/alljokes">I don't dare !</a>
+
+    <form id="readWarning">
+        <label for="readWarning">I understand and confirm</label>
+        <input id="check" type="checkbox" onclick="yesVisibility()" name="readWarning" value="read">
+    </form>
+
+    <form name="adJoke" method="post" th:action="@{/addNewJoke}" onsubmit="return validateJoke()">
+        <textarea id="jokeText" type="text" rows="2" name="jokeText" placeholder="Add your joke here if you dare ... !!!"></textarea>
+        <input id="yes"  type="submit" value="I'm perfectly willing to run that risk"/>
+    </form>
+
+</div>
 </body>
 </html>

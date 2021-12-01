@@ -62,10 +62,13 @@ services:
       #- ROCKETCHAT_PASSWORD=botpassword
       #- ROCKETCHAT_USESSL=false
       - ROCKETCHAT_URL=${ROCKETCHAT_URL}
-      - ROCKETCHAT_ROOM=${ROCKETCHAT_ROOM}
+      - ROCKETCHAT_ROOM=SEA_WAVE_6_DTAG
       - ROCKETCHAT_USER=${ROCKETCHAT_USER}
       - ROCKETCHAT_PASSWORD=${ROCKETCHAT_PASSWORD}
       - ROCKETCHAT_USESSL=true
+      - CHUCKBOT_USERNAME=${CHUCKBOT_USERNAME}
+      - CHUCKBOT_PASSWORD=${CHUCKBOT_PASSWORD}
+      - CHUCKBOT_URL=${CHUCKBOT_URL}
       - BOT_NAME=bot
       # you can add more scripts as you'd like here, they need to be installable by npm
       - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics

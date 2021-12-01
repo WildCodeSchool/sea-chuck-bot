@@ -1,0 +1,80 @@
+/* Stylesheet für NewJokeForm */
+
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  #form{
+    /*display: block;*/
+    height: 27%;
+    width: 30%;
+    background-color: rgb(233, 222, 77, 0.4);
+    border: 10px solid rgb(233, 222, 77, 0.4);
+    border-radius: 5px;
+    position: absolute;
+    margin-top: 7%;
+    margin-left: 3%;
+  }
+
+  #warning {
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    background-color: #bb7492;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  #return {
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    float: left;
+    width: 25%;
+    background-color: #bb7492;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  #check {
+    float: right;
+    margin-top: 17px;
+  }
+
+  label{
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    float: right;
+    width: 50%;
+    background-color: #bb7492;
+    color: white;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  #jokeText {
+    display: block;
+    width: 97%;
+    border: solid #FFFFFF;
+    border-radius: 3px;
+  }
+
+  #yes {
+    visibility: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline;
+    float: right;
+    background-color: #bb7492;
+    color: white;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 4px;
+  }
